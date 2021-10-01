@@ -10,6 +10,8 @@ import UIKit
 class ToDoTableViewCell: UITableViewCell {
 
     @IBOutlet weak var todoText: UILabel!
+    @IBOutlet weak var startDate: UILabel!
+    @IBOutlet weak var endDate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

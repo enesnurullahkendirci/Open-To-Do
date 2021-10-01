@@ -15,6 +15,7 @@ protocol ListedPresenterType {
     
     func onListedPresenter()
     func onTodosFetched(toDos: [ToDo])
+    func dateToString(dates: [Date]) -> [String]
 }
 
 class ListedPresenter: ListedPresenterType {
@@ -33,5 +34,15 @@ class ListedPresenter: ListedPresenterType {
             return
         }
         view.onTodosFetched(toDos: toDos)
+    }
+    
+    func dateToString(dates: [Date]) -> [String] {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm dd/MM/YY"
+        var stringDates: [String] = []
+        for date in dates{
+            stringDates.append(dateFormatter.string(from: date))
+        }
+        return stringDates
     }
 }

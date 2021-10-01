@@ -54,7 +54,10 @@ extension ListedViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "customToDoCell") as! ToDoTableViewCell
         let toDo = toDos?[indexPath.row]
         cell.todoText.text = toDo?.title
-        cell.detailTextLabel?.text = String(toDo?.date ?? 0)
+        let dateArray: [Date] = [toDo?.startDate ?? Date(), toDo?.endDate ?? Date()]
+        let dates: [String] = (presenter?.dateToString(dates: dateArray))!
+        cell.startDate.text = dates[0]
+        cell.endDate.text = dates[1]
         return cell
     }
     
