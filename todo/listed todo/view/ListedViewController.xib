@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListedViewController" customModule="todo" customModuleProvider="target">
             <connections>
+                <outlet property="navigationBar" destination="EVs-Ke-5jd" id="fdi-uM-5Te"/>
                 <outlet property="tableView" destination="z7M-uQ-QUS" id="6l2-Rq-K9r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -18,6 +18,9 @@ class ListedViewController: UIViewController {
     var presenter: ListedPresenterType?
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +41,6 @@ class ListedViewController: UIViewController {
 extension ListedViewController: ListedViewControllerType{
     func onTodosFetched(toDos: [[ToDo]]) {
         self.toDos = toDos
-        print("todos = ", toDos)
         self.tableView.reloadData()
     }
 }
@@ -46,7 +48,12 @@ extension ListedViewController: ListedViewControllerType{
 extension ListedViewController: UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return toDos?.count ?? 0
+        if toDos![0].count == 0 && toDos![1].count == 0 {
+            navigationBar.topItem?.title = "Add some To-Do"
+            return 0
+        }
+        navigationBar.topItem?.title = "Good Luck with To-Do."
+        return toDos!.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
