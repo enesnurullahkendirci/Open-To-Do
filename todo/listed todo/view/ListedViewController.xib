@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,27 +20,45 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <color key="separatorColor" name="AccentColor"/>
-                    <color key="sectionIndexBackgroundColor" name="AccentColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="IXt-ce-8xv"/>
                         <outlet property="delegate" destination="-1" id="q6H-Jo-pFp"/>
                     </connections>
                 </tableView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVs-Ke-5jd">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <items>
+                        <navigationItem title="Title" id="EYQ-bw-nGt">
+                            <barButtonItem key="rightBarButtonItem" id="j6k-gs-BAw">
+                                <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
+                                <connections>
+                                    <action selector="addClicked:" destination="-1" id="5k6-MC-OQd"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jvs-lp-K8O"/>
+                <constraint firstItem="z7M-uQ-QUS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Ljm-QC-5Jg"/>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="N9F-oU-6bw"/>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eVa-LT-QD5"/>
+                <constraint firstItem="z7M-uQ-QUS" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="eZO-GP-udw"/>
+                <constraint firstItem="z7M-uQ-QUS" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="rI5-Cp-vT5"/>
+                <constraint firstItem="z7M-uQ-QUS" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="xP8-tP-Rru"/>
+                <constraint firstItem="z7M-uQ-QUS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ygC-wI-HEH"/>
+            </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="84.375"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
