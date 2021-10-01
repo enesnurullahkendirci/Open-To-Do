@@ -8,35 +8,30 @@
 import Foundation
 
 protocol ListedPresenterType {
-    func onListedPresenter(on listedView: ListedViewControllerType)
+    
+    var view: ListedViewControllerType? {get set}
+    var interactor: ListedInteractorType? {get set}
+    var router: ListedRouterType? {get set}
+    
+    func onListedPresenter()
+    func onTodosFetched(toDos: [ToDo])
 }
 
-class ListedPresenter {
+class ListedPresenter: ListedPresenterType {
     
-    var interactor = ListedInteractor()
-    weak var listedView: ListedViewControllerType?
+    var view: ListedViewControllerType?
+    var interactor: ListedInteractorType?
+    var router: ListedRouterType?
     
-    init() {
-        interactor.interactorDelegate = self
+    func onListedPresenter() {
+        self.interactor?.fetchTodos()
     }
     
-}
-
-extension ListedPresenter: ListedPresenterType{
-    
-    func onListedPresenter(on listedView: ListedViewControllerType) {
-//        interactor.interactorDelegate = self
-        self.listedView = listedView
-        self.interactor.fetchTodos()
-    }
-}
-
-extension ListedPresenter: ListedInteractorDelegate{
     func onTodosFetched(toDos: [ToDo]) {
-        guard let listedView = self.listedView else {
+        guard let view = self.view else {
             print("listedpresenter -> listedview nil")
             return
         }
-        listedView.onTodosFetched(toDos: toDos)
+        view.onTodosFetched(toDos: toDos)
     }
 }

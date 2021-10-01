@@ -8,6 +8,8 @@
 import UIKit
 
 protocol ListedViewControllerType: AnyObject {
+    var presenter: ListedPresenterType? {get set}
+    
     func onTodosFetched(toDos: [ToDo])
 }
 
@@ -15,13 +17,15 @@ class ListedViewController: UIViewController {
     var toDos: [ToDo]?
     var presenter: ListedPresenterType?
     
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = ListedPresenter()
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         if presenter != nil {
-            self.presenter!.onListedPresenter(on: self)
+            self.presenter!.onListedPresenter()
         } else { //delete
             print("presenter nil")
         }
