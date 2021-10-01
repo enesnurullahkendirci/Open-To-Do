@@ -8,26 +8,19 @@
 import Foundation
 
 protocol ListedInteractorType {
-    var interactorDelegate: ListedInteractorDelegate? { get set }
+    var presenter: ListedPresenterType? {get set}
     
     func fetchTodos()
 }
 
-protocol ListedInteractorDelegate: AnyObject {
-    func onTodosFetched(toDos: [ToDo])
-}
-
 class ListedInteractor: ListedInteractorType {
-    
-    weak var interactorDelegate: ListedInteractorDelegate?
+    var presenter: ListedPresenterType?
 
     func fetchTodos() {
         var toDos: [ToDo] = []
         for i in 0...5{
             toDos.append(ToDo(title: "elma al", date: i, complete: false))
         }
-        self.interactorDelegate?.onTodosFetched(toDos: toDos)
+        self.presenter?.onTodosFetched(toDos: toDos)
     }
-    
-    
 }
