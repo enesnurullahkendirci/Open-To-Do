@@ -31,10 +31,8 @@ class ListedViewController: UIViewController {
         }
     }
     
-    @IBAction func addClicked(_ sender: UIBarButtonItem) { // MOVE IT!
-        let detailViewController = DetailViewController()
-        detailViewController.modalPresentationStyle = .popover
-        self.present(detailViewController, animated: true, completion: nil)
+    @IBAction func addClicked(_ sender: UIBarButtonItem) {
+        presenter?.didSelect(on: self, color: UIColor.systemCyan) //route to detail with random data.
     }
 }
 
