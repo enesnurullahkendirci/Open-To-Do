@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ListedPresenterType {
     
@@ -17,6 +18,7 @@ protocol ListedPresenterType {
     func onTodosFetched(toDos: [ToDo])
     func dateToString(dates: [Date]) -> [String]
     func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)
+    func didSelect(on view: ListedViewControllerType, color: UIColor)
 }
 
 class ListedPresenter: ListedPresenterType {
@@ -74,5 +76,9 @@ class ListedPresenter: ListedPresenterType {
             stringDates.append(dateFormatter.string(from: date))
         }
         return stringDates
+    }
+    
+    func didSelect(on view: ListedViewControllerType, color: UIColor) {
+        router?.pushToDetail(on: view, color: color)
     }
 }

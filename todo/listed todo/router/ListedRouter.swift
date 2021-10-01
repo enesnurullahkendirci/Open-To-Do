@@ -13,6 +13,7 @@ protocol ListedRouterType {
     var entry: EntryPoint? { get }
     
     static func start() -> ListedRouterType
+    func pushToDetail(on view: ListedViewControllerType, color: UIColor)
 }
 
 class ListedRouter: ListedRouterType {
@@ -36,6 +37,12 @@ class ListedRouter: ListedRouterType {
         router.entry = view as EntryPoint
         
         return router
+    }
+    
+    func pushToDetail(on view: ListedViewControllerType, color: UIColor) {
+        let detailViewController = DetailViewController(color: color)
+        let viewController = view as! ListedViewController
+        viewController.present(detailViewController, animated: true, completion: nil)
     }
     
     

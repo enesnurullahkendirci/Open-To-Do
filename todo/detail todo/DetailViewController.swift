@@ -9,13 +9,22 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var backgroundColor: UIColor //take fake data
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = backgroundColor
     }
 
-
+    init(color: UIColor) {
+        self.backgroundColor = color
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     /*
     // MARK: - Navigation
 
