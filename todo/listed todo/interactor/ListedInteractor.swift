@@ -18,8 +18,8 @@ class ListedInteractor: ListedInteractorType {
 
     func fetchTodos() {
         var toDos: [ToDo] = []
-        for i in 0...5{
-            toDos.append(ToDo(title: "elma al", date: i, complete: false))
+        for _ in 0...5{
+            toDos.append(ToDo(title: "Elma al", startDate: Date(), endDate: Date(), complete: true))
         }
         self.presenter?.onTodosFetched(toDos: toDos)
     }

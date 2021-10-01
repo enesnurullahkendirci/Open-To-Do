@@ -9,6 +9,7 @@ import Foundation
 
 struct ToDo {
     var title: String
-    var date: Int
+    var startDate: Date
+    var endDate: Date
     var complete: Bool
 }

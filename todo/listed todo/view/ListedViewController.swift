@@ -23,12 +23,17 @@ class ListedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "ToDoTableViewCell", bundle: nil), forCellReuseIdentifier: "customToDoCell")
         if presenter != nil {
             self.presenter!.onListedPresenter()
         } else { //delete
             print("presenter nil")
         }
+    }
+    @IBAction func addClicked(_ sender: UIBarButtonItem) {
+        let detailViewController = DetailViewController()
+        detailViewController.modalPresentationStyle = .popover
+        self.present(detailViewController, animated: true, completion: nil)
     }
 }
 
@@ -46,10 +51,13 @@ extension ListedViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customToDoCell") as! ToDoTableViewCell
         let toDo = toDos?[indexPath.row]
-        cell.textLabel?.text = toDo?.title
-        cell.detailTextLabel?.text = String(toDo?.date ?? 0)
+        cell.todoText.text = toDo?.title
+        let dateArray: [Date] = [toDo?.startDate ?? Date(), toDo?.endDate ?? Date()]
+        let dates: [String] = (presenter?.dateToString(dates: dateArray))!
+        cell.startDate.text = dates[0]
+        cell.endDate.text = dates[1]
         return cell
     }
     

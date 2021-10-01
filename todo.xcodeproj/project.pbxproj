@@ -18,6 +18,10 @@
 		69A09D2127060A290018B4C3 /* ListedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D2027060A290018B4C3 /* ListedRouter.swift */; };
 		69A09D28270628940018B4C3 /* ListedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D26270628940018B4C3 /* ListedViewController.swift */; };
 		69A09D29270628940018B4C3 /* ListedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A09D27270628940018B4C3 /* ListedViewController.xib */; };
+		69A09D3727070C2F0018B4C3 /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D3527070C2F0018B4C3 /* ToDoTableViewCell.swift */; };
+		69A09D3827070C2F0018B4C3 /* ToDoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A09D3627070C2F0018B4C3 /* ToDoTableViewCell.xib */; };
+		69A09D3B27070C480018B4C3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D3927070C480018B4C3 /* DetailViewController.swift */; };
+		69A09D3C27070C480018B4C3 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A09D3A27070C480018B4C3 /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		69A09D2027060A290018B4C3 /* ListedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedRouter.swift; sourceTree = "<group>"; };
 		69A09D26270628940018B4C3 /* ListedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedViewController.swift; sourceTree = "<group>"; };
 		69A09D27270628940018B4C3 /* ListedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListedViewController.xib; sourceTree = "<group>"; };
+		69A09D3527070C2F0018B4C3 /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
+		69A09D3627070C2F0018B4C3 /* ToDoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoTableViewCell.xib; sourceTree = "<group>"; };
+		69A09D3927070C480018B4C3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		69A09D3A27070C480018B4C3 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				69A09D1C2705D14B0018B4C3 /* ToDo.swift */,
+				69A09D3427070C060018B4C3 /* detail todo */,
 				69A09D112705BBFF0018B4C3 /* listed todo */,
 				69A09CFA2705BBDD0018B4C3 /* AppDelegate.swift */,
 				69A09CFC2705BBDD0018B4C3 /* SceneDelegate.swift */,
@@ -94,6 +103,7 @@
 			children = (
 				69A09D26270628940018B4C3 /* ListedViewController.swift */,
 				69A09D27270628940018B4C3 /* ListedViewController.xib */,
+				69A09D3D27070C690018B4C3 /* cells */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -120,6 +130,24 @@
 				69A09D2027060A290018B4C3 /* ListedRouter.swift */,
 			);
 			path = router;
+			sourceTree = "<group>";
+		};
+		69A09D3427070C060018B4C3 /* detail todo */ = {
+			isa = PBXGroup;
+			children = (
+				69A09D3927070C480018B4C3 /* DetailViewController.swift */,
+				69A09D3A27070C480018B4C3 /* DetailViewController.xib */,
+			);
+			path = "detail todo";
+			sourceTree = "<group>";
+		};
+		69A09D3D27070C690018B4C3 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				69A09D3527070C2F0018B4C3 /* ToDoTableViewCell.swift */,
+				69A09D3627070C2F0018B4C3 /* ToDoTableViewCell.xib */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +210,9 @@
 			files = (
 				69A09D0A2705BBDE0018B4C3 /* LaunchScreen.storyboard in Resources */,
 				69A09D29270628940018B4C3 /* ListedViewController.xib in Resources */,
+				69A09D3C27070C480018B4C3 /* DetailViewController.xib in Resources */,
 				69A09D072705BBDE0018B4C3 /* Assets.xcassets in Resources */,
+				69A09D3827070C2F0018B4C3 /* ToDoTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +229,8 @@
 				69A09D2127060A290018B4C3 /* ListedRouter.swift in Sources */,
 				69A09D1D2705D14B0018B4C3 /* ToDo.swift in Sources */,
 				69A09D192705C39F0018B4C3 /* ListedPresenter.swift in Sources */,
+				69A09D3727070C2F0018B4C3 /* ToDoTableViewCell.swift in Sources */,
+				69A09D3B27070C480018B4C3 /* DetailViewController.swift in Sources */,
 				69A09D052705BBDD0018B4C3 /* todo.xcdatamodeld in Sources */,
 				69A09D1B2705C4C20018B4C3 /* ListedInteractor.swift in Sources */,
 			);
