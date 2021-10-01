@@ -16,6 +16,7 @@ protocol ListedPresenterType {
     func onListedPresenter()
     func onTodosFetched(toDos: [ToDo])
     func dateToString(dates: [Date]) -> [String]
+    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)
 }
 
 class ListedPresenter: ListedPresenterType {
@@ -43,6 +44,26 @@ class ListedPresenter: ListedPresenterType {
             }
         }
         view.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
+    }
+    
+    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)  {
+        var funcToDos: [[ToDo]] = toDos
+        if completed {
+            if let todoIndex = toDos[1].firstIndex(where: {$0.id == id}) {
+                var toDo = toDos[1][todoIndex]
+                toDo.completed.toggle()
+                funcToDos[0].append(toDo)
+                funcToDos[1].remove(at: todoIndex)
+            }
+        }else {
+            if let todoIndex = toDos[0].firstIndex(where: {$0.id == id}) {
+                var toDo = toDos[0][todoIndex]
+                toDo.completed.toggle()
+                funcToDos[1].append(toDo)
+                funcToDos[0].remove(at: todoIndex)
+            }
+        }
+        view!.onTodosFetched(toDos: funcToDos)
     }
     
     func dateToString(dates: [Date]) -> [String] {

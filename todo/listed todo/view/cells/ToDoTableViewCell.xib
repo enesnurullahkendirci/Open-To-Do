@@ -29,9 +29,6 @@
                                         <buttonConfiguration key="configuration" style="plain" image="checkmark.seal" catalog="system">
                                             <color key="baseForegroundColor" systemColor="tertiaryLabelColor"/>
                                         </buttonConfiguration>
-                                        <connections>
-                                            <action selector="checkClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YXX-6g-cM6"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

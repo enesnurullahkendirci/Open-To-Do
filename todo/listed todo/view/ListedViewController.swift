@@ -27,6 +27,7 @@ class ListedViewController: UIViewController {
             self.presenter!.onListedPresenter()
         }
     }
+    
     @IBAction func addClicked(_ sender: UIBarButtonItem) { // MOVE IT!
         let detailViewController = DetailViewController()
         detailViewController.modalPresentationStyle = .popover
@@ -62,7 +63,20 @@ extension ListedViewController: UITableViewDataSource{
         cell.endDate.text = dates[1]
         cell.checked = toDo?.completed
         cell.setImage()
+        
+        guard let id = toDo?.id else { return cell }
+        cell.checkButton.tag = id
+        cell.checkButton.addTarget(self, action: #selector(cellCheckButtonClicked), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func cellCheckButtonClicked(sender: UIButton!) {
+        
+        if sender.image(for: .normal) == UIImage(systemName: "checkmark.seal") {
+            self.presenter?.editToDo(tag: sender.tag,toDos: toDos!, completed: false)
+        } else {
+            self.presenter?.editToDo(tag: sender.tag,toDos: toDos!, completed: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -70,3 +84,5 @@ extension ListedViewController: UITableViewDataSource{
         return headerTitles[section]
     }
 }
+
+
