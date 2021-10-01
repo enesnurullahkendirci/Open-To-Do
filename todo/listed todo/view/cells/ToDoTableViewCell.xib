@@ -29,6 +29,9 @@
                                         <buttonConfiguration key="configuration" style="plain" image="checkmark.seal" catalog="system">
                                             <color key="baseForegroundColor" systemColor="tertiaryLabelColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="checkClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YXX-6g-cM6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -109,6 +112,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="checkButton" destination="ApX-ja-x8K" id="Qte-IM-GjY"/>
                 <outlet property="endDate" destination="OUE-Ss-kRP" id="CQh-dB-uQC"/>
                 <outlet property="startDate" destination="3sh-Aj-WCl" id="dz2-GD-mug"/>
                 <outlet property="todoText" destination="H18-AW-fzF" id="GjI-NW-7g3"/>

@@ -33,7 +33,16 @@ class ListedPresenter: ListedPresenterType {
             print("listedpresenter -> listedview nil")
             return
         }
-        view.onTodosFetched(toDos: toDos)
+        var completedToDo: [ToDo] = []
+        var uncompletedToDo: [ToDo] = []
+        for todo in toDos {
+            if todo.completed {
+                completedToDo.append(todo)
+            }else {
+                uncompletedToDo.append(todo)
+            }
+        }
+        view.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
     }
     
     func dateToString(dates: [Date]) -> [String] {

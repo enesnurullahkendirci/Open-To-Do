@@ -8,8 +8,9 @@
 import Foundation
 
 struct ToDo {
+    var id: Int
     var title: String
     var startDate: Date
     var endDate: Date
-    var complete: Bool
+    var completed: Bool
 }
