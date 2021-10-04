@@ -16,6 +16,7 @@ protocol ListedViewControllerType: AnyObject {
 class ListedViewController: UIViewController {
     var toDos: [[ToDo]]?
     var presenter: ListedPresenterType?
+    var sortByEndDate = true
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -30,6 +31,13 @@ class ListedViewController: UIViewController {
     @IBAction func addClicked(_ sender: UIBarButtonItem) {
         guard let presenter = presenter else { return }
         presenter.didSelect(on: self, color: UIColor.systemCyan) //route to detail with random data.
+    }
+    
+    @IBAction func sort(_ sender: UIBarButtonItem) {
+        guard let toDos = toDos else { return }
+        guard let presenter = presenter else { return }
+        presenter.sort(toDo: toDos, sortByEndDate: sortByEndDate)
+        sortByEndDate.toggle()
     }
 }
 

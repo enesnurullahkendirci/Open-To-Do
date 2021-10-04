@@ -18,6 +18,7 @@ protocol ListedPresenterType {
     func onTodosFetched(toDos: [[ToDo]])
     func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)
     func didSelect(on view: ListedViewControllerType, color: UIColor)
+    func sort(toDo: [[ToDo]], sortByEndDate: Bool)
 }
 
 class ListedPresenter: ListedPresenterType {
@@ -34,6 +35,11 @@ class ListedPresenter: ListedPresenterType {
     func onTodosFetched(toDos: [[ToDo]]) {
         guard let view = self.view else { return }
         view.onTodosFetched(toDos: toDos)
+    }
+    
+    func didSelect(on view: ListedViewControllerType, color: UIColor) {
+        guard let router = router else { return }
+        router.pushToDetail(on: view, color: color)
     }
     
     func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)  {
@@ -57,8 +63,16 @@ class ListedPresenter: ListedPresenterType {
         view.onTodosFetched(toDos: funcToDos)
     }
     
-    func didSelect(on view: ListedViewControllerType, color: UIColor) {
-        guard let router = router else { return }
-        router.pushToDetail(on: view, color: color)
+    func sort(toDo: [[ToDo]], sortByEndDate: Bool) {
+        var todo0: [ToDo]?
+        var todo1: [ToDo]?
+        if sortByEndDate {
+            todo0 = toDo[0].sorted(by: { $0.endDate.compare($1.endDate) == .orderedDescending })
+            todo1 = toDo[1].sorted(by: { $0.endDate.compare($1.endDate) == .orderedDescending })
+        } else {
+            todo0 = toDo[0].sorted(by: { $0.startDate.compare($1.startDate) == .orderedDescending })
+            todo1 = toDo[1].sorted(by: { $0.startDate.compare($1.startDate) == .orderedDescending })
+        }
+        onTodosFetched(toDos: [todo0!, todo1!])
     }
 }

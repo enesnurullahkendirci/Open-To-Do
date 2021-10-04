@@ -22,7 +22,7 @@ class ListedInteractor: ListedInteractorType {
             toDos.append(ToDo(id: i, title: "Elma al", startDate: Date(), endDate: Date(), completed: true))
         }
         for i in 0...3{
-            toDos.append(ToDo(id: i + 10, title: "Elma Ye", startDate: Date(), endDate: Date(), completed: false))
+            toDos.append(ToDo(id: i + 10, title: "Elma Ye", startDate: Calendar.current.date(byAdding: .day, value: -i, to: Date())!, endDate: Calendar.current.date(byAdding: .day, value: 10 + i, to: Date())!, completed: false))
         }
         var completedToDo: [ToDo] = []
         var uncompletedToDo: [ToDo] = []
