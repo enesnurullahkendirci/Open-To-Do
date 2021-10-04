@@ -29,6 +29,8 @@ class ListedViewController: UIViewController {
         tableView.register(UINib(nibName: "ToDoTableViewCell", bundle: nil), forCellReuseIdentifier: "customToDoCell")
         guard let presenter = presenter else { return }
         presenter.onListedPresenter()
+        searchBar.searchTextField.clearButtonMode = .never
+
     }
     
     @IBAction func addClicked(_ sender: UIBarButtonItem) {
@@ -47,7 +49,6 @@ class ListedViewController: UIViewController {
 extension ListedViewController: ListedViewControllerType{
     func onTodosFetched(toDos: [[ToDo]]) {
         if searching {
-            self.searchedToDos = toDos
             searchedToDos = toDosFilter(toDos: toDos, searchText: searchBar.text!)
         }
         self.toDos = toDos
@@ -109,12 +110,14 @@ extension ListedViewController: UITableViewDataSource{
 extension ListedViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let toDos = toDos else { return }
+        searchBar.setShowsCancelButton(true, animated: true)
         searchedToDos = toDosFilter(toDos: toDos, searchText: searchText)
         searching = true
         tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
         searching = false
         searchBar.text = ""
         tableView.reloadData()
