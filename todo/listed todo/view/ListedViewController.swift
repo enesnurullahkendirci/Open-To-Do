@@ -16,6 +16,7 @@ protocol ListedViewControllerType: AnyObject {
 class ListedViewController: UIViewController {
     var toDos: [[ToDo]]?
     var presenter: ListedPresenterType?
+    var willAscendingOrder = true
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -30,6 +31,13 @@ class ListedViewController: UIViewController {
     @IBAction func addClicked(_ sender: UIBarButtonItem) {
         guard let presenter = presenter else { return }
         presenter.didSelect(on: self, color: UIColor.systemCyan) //route to detail with random data.
+    }
+    
+    @IBAction func sort(_ sender: UIBarButtonItem) {
+        guard let toDos = toDos else { return }
+        guard let presenter = presenter else { return }
+        presenter.sort(toDo: toDos, willAscendingOrder: willAscendingOrder)
+        willAscendingOrder.toggle()
     }
 }
 
@@ -71,9 +79,9 @@ extension ListedViewController: UITableViewDataSource{
         guard let presenter = self.presenter else { return }
         guard let toDos = toDos else { return }
         if sender.image(for: .normal) == UIImage(systemName: SystemImages.unchecked.rawValue) {
-            presenter.editToDo(tag: sender.tag, toDos: toDos, completed: false)
+            presenter.editToDo(tag: sender.tag, toDos: toDos, completed: false, willAscendingOrder: !willAscendingOrder)
         } else if sender.image(for: .normal) == UIImage(systemName: SystemImages.checked.rawValue) {
-            presenter.editToDo(tag: sender.tag, toDos: toDos, completed: true)
+            presenter.editToDo(tag: sender.tag, toDos: toDos, completed: true, willAscendingOrder: !willAscendingOrder)
         }
     }
     
