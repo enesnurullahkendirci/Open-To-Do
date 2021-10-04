@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListedViewController" customModule="todo" customModuleProvider="target">
             <connections>
                 <outlet property="navigationBar" destination="EVs-Ke-5jd" id="fdi-uM-5Te"/>
+                <outlet property="searchBar" destination="1Rz-s9-Y5d" id="MpS-ov-7Us"/>
                 <outlet property="tableView" destination="z7M-uQ-QUS" id="6l2-Rq-K9r"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,14 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
-                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="IXt-ce-8xv"/>
-                        <outlet property="delegate" destination="-1" id="q6H-Jo-pFp"/>
-                    </connections>
-                </tableView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVs-Ke-5jd">
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
@@ -47,18 +40,43 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="J4h-yp-27C">
+                    <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Rz-s9-Y5d">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="81"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="eah-WQ-LLG"/>
+                            </connections>
+                        </searchBar>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
+                            <rect key="frame" x="0.0" y="81" width="414" height="727"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="IXt-ce-8xv"/>
+                                <outlet property="delegate" destination="-1" id="q6H-Jo-pFp"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="1Rz-s9-Y5d" firstAttribute="width" secondItem="J4h-yp-27C" secondAttribute="width" id="GCH-wi-qwg"/>
+                        <constraint firstItem="z7M-uQ-QUS" firstAttribute="width" secondItem="J4h-yp-27C" secondAttribute="width" id="OJ6-xK-AeN"/>
+                        <constraint firstItem="1Rz-s9-Y5d" firstAttribute="height" secondItem="J4h-yp-27C" secondAttribute="height" multiplier="0.1" id="RBM-UK-hd0"/>
+                        <constraint firstItem="z7M-uQ-QUS" firstAttribute="height" secondItem="J4h-yp-27C" secondAttribute="height" multiplier="0.9" id="u2i-M2-KD7"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="J4h-yp-27C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="66C-wq-Lr8"/>
+                <constraint firstItem="J4h-yp-27C" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="CXi-Rf-Z3A"/>
                 <constraint firstItem="EVs-Ke-5jd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jvs-lp-K8O"/>
-                <constraint firstItem="z7M-uQ-QUS" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Ljm-QC-5Jg"/>
                 <constraint firstItem="EVs-Ke-5jd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="N9F-oU-6bw"/>
                 <constraint firstItem="EVs-Ke-5jd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eVa-LT-QD5"/>
-                <constraint firstItem="z7M-uQ-QUS" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="eZO-GP-udw"/>
-                <constraint firstItem="z7M-uQ-QUS" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="rI5-Cp-vT5"/>
-                <constraint firstItem="z7M-uQ-QUS" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="xP8-tP-Rru"/>
-                <constraint firstItem="z7M-uQ-QUS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ygC-wI-HEH"/>
+                <constraint firstItem="J4h-yp-27C" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="k8f-Lg-1OO"/>
+                <constraint firstAttribute="bottom" secondItem="J4h-yp-27C" secondAttribute="bottom" id="t5e-sc-q0Q"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="84.375"/>
         </view>

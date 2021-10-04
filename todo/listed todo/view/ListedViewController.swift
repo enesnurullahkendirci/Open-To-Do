@@ -15,9 +15,12 @@ protocol ListedViewControllerType: AnyObject {
 
 class ListedViewController: UIViewController {
     var toDos: [[ToDo]]?
+    var searchedToDos: [[ToDo]]?
     var presenter: ListedPresenterType?
+    var searching: Bool = false
     var willAscendingOrder = true
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
     
@@ -43,6 +46,10 @@ class ListedViewController: UIViewController {
 
 extension ListedViewController: ListedViewControllerType{
     func onTodosFetched(toDos: [[ToDo]]) {
+        if searching {
+            self.searchedToDos = toDos
+            searchedToDos = toDosFilter(toDos: toDos, searchText: searchBar.text!)
+        }
         self.toDos = toDos
         self.tableView.reloadData()
     }
@@ -61,13 +68,13 @@ extension ListedViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let toDos = toDos else { return 0 }
+        let toDos = getArray()
         return toDos[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let toDos = getArray()
         let cell = tableView.dequeueReusableCell(withIdentifier: "customToDoCell") as! ToDoTableViewCell
-        guard let toDos = toDos else { return cell }
         let toDo = toDos[indexPath.section][indexPath.row]
         cell.toDo = toDo
         cell.configureCell()
@@ -88,6 +95,36 @@ extension ListedViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let headerTitles = ["To-Do", "Completed"]
         return headerTitles[section]
+    }
+    
+    private func getArray() -> [[ToDo]]{
+        if self.searching {
+            return self.searchedToDos!
+        } else {
+            return self.toDos!
+        }
+    }
+}
+
+extension ListedViewController: UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let toDos = toDos else { return }
+        searchedToDos = toDosFilter(toDos: toDos, searchText: searchText)
+        searching = true
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searching = false
+        searchBar.text = ""
+        tableView.reloadData()
+    }
+    
+    #warning("Logic!")
+    private func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]] {
+        let searchedToDos0 = toDos[0].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        let searchedToDos1 = toDos[1].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        return [searchedToDos0, searchedToDos1]
     }
 }
 
