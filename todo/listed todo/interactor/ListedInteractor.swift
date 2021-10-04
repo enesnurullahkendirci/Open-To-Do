@@ -19,7 +19,7 @@ class ListedInteractor: ListedInteractorType {
     func fetchTodos() {
         var toDos: [ToDo] = []
         for i in 0...5{
-            toDos.append(ToDo(id: i, title: "Elma al", startDate: Date(), endDate: Date(), completed: true))
+            toDos.append(ToDo(id: i, title: "Elma al", startDate: Calendar.current.date(byAdding: .day, value: -2*i, to: Date())!, endDate: Date(), completed: true))
         }
         for i in 0...3{
             toDos.append(ToDo(id: i + 10, title: "Elma Ye", startDate: Calendar.current.date(byAdding: .day, value: -i, to: Date())!, endDate: Calendar.current.date(byAdding: .day, value: 10 + i, to: Date())!, completed: false))

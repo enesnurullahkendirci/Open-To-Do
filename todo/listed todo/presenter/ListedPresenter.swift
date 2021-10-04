@@ -16,9 +16,9 @@ protocol ListedPresenterType {
     
     func onListedPresenter()
     func onTodosFetched(toDos: [[ToDo]])
-    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)
+    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool, willAscendingOrder: Bool)
     func didSelect(on view: ListedViewControllerType, color: UIColor)
-    func sort(toDo: [[ToDo]], sortByEndDate: Bool)
+    func sort(toDo: [[ToDo]], willAscendingOrder: Bool)
 }
 
 class ListedPresenter: ListedPresenterType {
@@ -42,7 +42,7 @@ class ListedPresenter: ListedPresenterType {
         router.pushToDetail(on: view, color: color)
     }
     
-    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)  {
+    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool, willAscendingOrder: Bool)  {
         var funcToDos: [[ToDo]] = toDos
         if completed {
             if let todoIndex = toDos[1].firstIndex(where: {$0.id == id}) {
@@ -59,16 +59,15 @@ class ListedPresenter: ListedPresenterType {
                 funcToDos[0].remove(at: todoIndex)
             }
         }
-        guard let view = self.view else { return }
-        view.onTodosFetched(toDos: funcToDos)
+        sort(toDo: funcToDos, willAscendingOrder: willAscendingOrder)
     }
     
-    func sort(toDo: [[ToDo]], sortByEndDate: Bool) {
+    func sort(toDo: [[ToDo]], willAscendingOrder: Bool) {
         var todo0: [ToDo]?
         var todo1: [ToDo]?
-        if sortByEndDate {
-            todo0 = toDo[0].sorted(by: { $0.endDate.compare($1.endDate) == .orderedDescending })
-            todo1 = toDo[1].sorted(by: { $0.endDate.compare($1.endDate) == .orderedDescending })
+        if willAscendingOrder {
+            todo0 = toDo[0].sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
+            todo1 = toDo[1].sorted(by: { $0.startDate.compare($1.startDate) == .orderedAscending })
         } else {
             todo0 = toDo[0].sorted(by: { $0.startDate.compare($1.startDate) == .orderedDescending })
             todo1 = toDo[1].sorted(by: { $0.startDate.compare($1.startDate) == .orderedDescending })
