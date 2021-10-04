@@ -24,6 +24,16 @@ class ListedInteractor: ListedInteractorType {
         for i in 0...3{
             toDos.append(ToDo(id: i + 10, title: "Elma Ye", startDate: Date(), endDate: Date(), completed: false))
         }
-        self.presenter?.onTodosFetched(toDos: toDos)
+        var completedToDo: [ToDo] = []
+        var uncompletedToDo: [ToDo] = []
+        for todo in toDos {
+            if todo.completed {
+                completedToDo.append(todo)
+            }else {
+                uncompletedToDo.append(todo)
+            }
+        }
+        guard let presenter = self.presenter else { return }
+        presenter.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
     }
 }

@@ -22,6 +22,7 @@
 		69A09D3827070C2F0018B4C3 /* ToDoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A09D3627070C2F0018B4C3 /* ToDoTableViewCell.xib */; };
 		69A09D3B27070C480018B4C3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D3927070C480018B4C3 /* DetailViewController.swift */; };
 		69A09D3C27070C480018B4C3 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A09D3A27070C480018B4C3 /* DetailViewController.xib */; };
+		69E8A3D6270AE76800294F92 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E8A3D5270AE76800294F92 /* Date+ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		69A09D3627070C2F0018B4C3 /* ToDoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDoTableViewCell.xib; sourceTree = "<group>"; };
 		69A09D3927070C480018B4C3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		69A09D3A27070C480018B4C3 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		69E8A3D5270AE76800294F92 /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				69A09D1C2705D14B0018B4C3 /* ToDo.swift */,
+				69E8A3D4270AE74E00294F92 /* helpers */,
 				69A09D3427070C060018B4C3 /* detail todo */,
 				69A09D112705BBFF0018B4C3 /* listed todo */,
 				69A09CFA2705BBDD0018B4C3 /* AppDelegate.swift */,
@@ -148,6 +151,14 @@
 				69A09D3627070C2F0018B4C3 /* ToDoTableViewCell.xib */,
 			);
 			path = cells;
+			sourceTree = "<group>";
+		};
+		69E8A3D4270AE74E00294F92 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				69E8A3D5270AE76800294F92 /* Date+ext.swift */,
+			);
+			path = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +241,7 @@
 				69A09D1D2705D14B0018B4C3 /* ToDo.swift in Sources */,
 				69A09D192705C39F0018B4C3 /* ListedPresenter.swift in Sources */,
 				69A09D3727070C2F0018B4C3 /* ToDoTableViewCell.swift in Sources */,
+				69E8A3D6270AE76800294F92 /* Date+ext.swift in Sources */,
 				69A09D3B27070C480018B4C3 /* DetailViewController.swift in Sources */,
 				69A09D052705BBDD0018B4C3 /* todo.xcdatamodeld in Sources */,
 				69A09D1B2705C4C20018B4C3 /* ListedInteractor.swift in Sources */,

@@ -61,13 +61,18 @@ extension ListedViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customToDoCell") as! ToDoTableViewCell
         let toDo = toDos?[indexPath.section][indexPath.row]
+        
+        #warning("give todo to cell")
         cell.todoText.text = toDo?.title
         let dateArray: [Date] = [toDo?.startDate ?? Date(), toDo?.endDate ?? Date()]
-        let dates: [String] = (presenter?.dateToString(dates: dateArray))!
+        let stringDate1: String = dateArray[0].dateToString()
+        let stringDate2: String = dateArray[1].dateToString()
+        let dates: [String] = [stringDate1, stringDate2]
         cell.startDate.text = dates[0]
         cell.endDate.text = dates[1]
         cell.checked = toDo?.completed
         cell.setImage()
+        #warning("give todo to cell")
         
         guard let id = toDo?.id else { return cell }
         cell.checkButton.tag = id
@@ -89,5 +94,4 @@ extension ListedViewController: UITableViewDataSource{
         return headerTitles[section]
     }
 }
-
 

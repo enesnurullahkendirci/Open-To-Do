@@ -15,8 +15,7 @@ protocol ListedPresenterType {
     var router: ListedRouterType? {get set}
     
     func onListedPresenter()
-    func onTodosFetched(toDos: [ToDo])
-    func dateToString(dates: [Date]) -> [String]
+    func onTodosFetched(toDos: [[ToDo]])
     func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)
     func didSelect(on view: ListedViewControllerType, color: UIColor)
 }
@@ -31,21 +30,12 @@ class ListedPresenter: ListedPresenterType {
         self.interactor?.fetchTodos()
     }
     
-    func onTodosFetched(toDos: [ToDo]) {
+    func onTodosFetched(toDos: [[ToDo]]) {
         guard let view = self.view else {
             print("listedpresenter -> listedview nil")
             return
         }
-        var completedToDo: [ToDo] = []
-        var uncompletedToDo: [ToDo] = []
-        for todo in toDos {
-            if todo.completed {
-                completedToDo.append(todo)
-            }else {
-                uncompletedToDo.append(todo)
-            }
-        }
-        view.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
+        view.onTodosFetched(toDos: toDos)
     }
     
     func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool)  {
@@ -66,16 +56,6 @@ class ListedPresenter: ListedPresenterType {
             }
         }
         view!.onTodosFetched(toDos: funcToDos)
-    }
-    
-    func dateToString(dates: [Date]) -> [String] {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm dd/MM/YY"
-        var stringDates: [String] = []
-        for date in dates{
-            stringDates.append(dateFormatter.string(from: date))
-        }
-        return stringDates
     }
     
     func didSelect(on view: ListedViewControllerType, color: UIColor) {
