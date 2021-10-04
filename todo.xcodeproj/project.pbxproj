@@ -23,6 +23,7 @@
 		69A09D3B27070C480018B4C3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D3927070C480018B4C3 /* DetailViewController.swift */; };
 		69A09D3C27070C480018B4C3 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A09D3A27070C480018B4C3 /* DetailViewController.xib */; };
 		69E8A3D6270AE76800294F92 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E8A3D5270AE76800294F92 /* Date+ext.swift */; };
+		69E8A3D8270AFB3500294F92 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E8A3D7270AFB3500294F92 /* Enum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		69A09D3927070C480018B4C3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		69A09D3A27070C480018B4C3 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		69E8A3D5270AE76800294F92 /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
+		69E8A3D7270AFB3500294F92 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				69E8A3D5270AE76800294F92 /* Date+ext.swift */,
+				69E8A3D7270AFB3500294F92 /* Enum.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				69A09D3B27070C480018B4C3 /* DetailViewController.swift in Sources */,
 				69A09D052705BBDD0018B4C3 /* todo.xcdatamodeld in Sources */,
 				69A09D1B2705C4C20018B4C3 /* ListedInteractor.swift in Sources */,
+				69E8A3D8270AFB3500294F92 /* Enum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

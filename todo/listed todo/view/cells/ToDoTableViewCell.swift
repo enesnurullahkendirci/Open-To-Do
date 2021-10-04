@@ -14,7 +14,7 @@ class ToDoTableViewCell: UITableViewCell {
     @IBOutlet weak var endDate: UILabel!
     @IBOutlet weak var checkButton: UIButton!
     
-    var id: Int?
+    var toDo: ToDo?
     var checked: Bool?
     
     override func awakeFromNib() {
@@ -29,8 +29,19 @@ class ToDoTableViewCell: UITableViewCell {
     }
     
     func setImage() {
-        guard let checkedImage = UIImage(systemName: "checkmark.seal.fill") else { return }
-        guard let uncheckedImage = UIImage(systemName: "checkmark.seal") else { return }
-        checked! ? checkButton.setImage(checkedImage, for: .normal) : checkButton.setImage(uncheckedImage, for: .normal)
+        guard let checkedImage = UIImage(systemName: SystemImages.checked.rawValue) else { return }
+        guard let uncheckedImage = UIImage(systemName: SystemImages.unchecked.rawValue) else { return }
+        guard let checked = checked else { return }
+        checked ? checkButton.setImage(checkedImage, for: .normal) : checkButton.setImage(uncheckedImage, for: .normal)
+    }
+    
+    func configureCell() {
+        guard let toDo = self.toDo else { return }
+        todoText.text = toDo.title
+        startDate.text = toDo.startDate.dateToString()
+        endDate.text = toDo.endDate.dateToString()
+        checkButton.tag = toDo.id
+        checked = toDo.completed
+        setImage()
     }
 }

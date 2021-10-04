@@ -27,14 +27,12 @@ class ListedPresenter: ListedPresenterType {
     var router: ListedRouterType?
     
     func onListedPresenter() {
-        self.interactor?.fetchTodos()
+        guard let interactor = interactor else { return }
+        interactor.fetchTodos()
     }
     
     func onTodosFetched(toDos: [[ToDo]]) {
-        guard let view = self.view else {
-            print("listedpresenter -> listedview nil")
-            return
-        }
+        guard let view = self.view else { return }
         view.onTodosFetched(toDos: toDos)
     }
     
@@ -55,10 +53,12 @@ class ListedPresenter: ListedPresenterType {
                 funcToDos[0].remove(at: todoIndex)
             }
         }
-        view!.onTodosFetched(toDos: funcToDos)
+        guard let view = self.view else { return }
+        view.onTodosFetched(toDos: funcToDos)
     }
     
     func didSelect(on view: ListedViewControllerType, color: UIColor) {
-        router?.pushToDetail(on: view, color: color)
+        guard let router = router else { return }
+        router.pushToDetail(on: view, color: color)
     }
 }
