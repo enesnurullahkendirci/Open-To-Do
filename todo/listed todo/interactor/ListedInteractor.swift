@@ -35,5 +35,10 @@ class ListedInteractor: ListedInteractorType {
         }
         guard let presenter = self.presenter else { return }
         presenter.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
+        var coreDataManager = CoreDataManager()
+        coreDataManager.getAllItems()
+        for index in 0...5{
+            coreDataManager.createItem(id: index + 911, title: "muz al", endDate: nil, completed: false)
+        }
     }
 }
