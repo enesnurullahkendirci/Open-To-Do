@@ -19,6 +19,7 @@ protocol ListedPresenterType {
     func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool, willAscendingOrder: Bool)
     func didSelect(on view: ListedViewControllerType, color: UIColor)
     func sort(toDo: [[ToDo]], willAscendingOrder: Bool)
+    func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]]
 }
 
 class ListedPresenter: ListedPresenterType {
@@ -73,5 +74,11 @@ class ListedPresenter: ListedPresenterType {
             todo1 = toDo[1].sorted(by: { $0.startDate.compare($1.startDate) == .orderedDescending })
         }
         onTodosFetched(toDos: [todo0!, todo1!])
+    }
+    
+    func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]] {
+        let searchedToDos0 = toDos[0].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        let searchedToDos1 = toDos[1].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        return [searchedToDos0, searchedToDos1]
     }
 }

@@ -49,7 +49,8 @@ class ListedViewController: UIViewController {
 extension ListedViewController: ListedViewControllerType{
     func onTodosFetched(toDos: [[ToDo]]) {
         if searching {
-            searchedToDos = toDosFilter(toDos: toDos, searchText: searchBar.text!)
+            guard let presenter = presenter else { return }
+            searchedToDos = presenter.toDosFilter(toDos: toDos, searchText: searchBar.text!)
         }
         self.toDos = toDos
         self.tableView.reloadData()
@@ -110,8 +111,9 @@ extension ListedViewController: UITableViewDataSource{
 extension ListedViewController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let toDos = toDos else { return }
+        guard let presenter = presenter else { return }
         searchBar.setShowsCancelButton(true, animated: true)
-        searchedToDos = toDosFilter(toDos: toDos, searchText: searchText)
+        searchedToDos = presenter.toDosFilter(toDos: toDos, searchText: searchText)
         searching = true
         tableView.reloadData()
     }
@@ -123,11 +125,5 @@ extension ListedViewController: UISearchBarDelegate{
         tableView.reloadData()
     }
     
-    #warning("Logic!")
-    private func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]] {
-        let searchedToDos0 = toDos[0].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
-        let searchedToDos1 = toDos[1].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
-        return [searchedToDos0, searchedToDos1]
-    }
 }
 
