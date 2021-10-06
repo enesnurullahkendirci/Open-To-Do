@@ -18,7 +18,7 @@ class ListedViewController: UIViewController {
     var searchedToDos: [[ToDo]]?
     var presenter: ListedPresenterType?
     var searching: Bool = false
-    var willAscendingOrder = true
+    var ascending = true
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -28,7 +28,7 @@ class ListedViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ToDoTableViewCell", bundle: nil), forCellReuseIdentifier: "customToDoCell")
         guard let presenter = presenter else { return }
-        presenter.onListedPresenter()
+        presenter.onListedPresenter(ascending: ascending)
         searchBar.searchTextField.clearButtonMode = .never
 
     }
@@ -39,10 +39,10 @@ class ListedViewController: UIViewController {
     }
     
     @IBAction func sort(_ sender: UIBarButtonItem) {
-        guard let toDos = toDos else { return }
         guard let presenter = presenter else { return }
-        presenter.sort(toDo: toDos, willAscendingOrder: willAscendingOrder)
-        willAscendingOrder.toggle()
+        ascending.toggle()
+        presenter.onListedPresenter(ascending: ascending)
+
     }
 }
 
@@ -61,9 +61,9 @@ extension ListedViewController: UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let toDos = toDos else { return 0 }
-        if toDos[0].count == 0 && toDos[1].count == 0 {
+        if toDos[0].count == 0 {
             navigationBar.topItem?.title = "Add some To-Do"
-            return 0
+            return (toDos[1].count > 0 ? 2 : 0)
         }
         navigationBar.topItem?.title = "Good Luck with To-Do."
         return toDos.count
@@ -86,12 +86,7 @@ extension ListedViewController: UITableViewDataSource{
     
     @objc func cellCheckButtonClicked(sender: UIButton!) {
         guard let presenter = self.presenter else { return }
-        guard let toDos = toDos else { return }
-        if sender.image(for: .normal) == UIImage(systemName: SystemImages.unchecked.rawValue) {
-            presenter.editToDo(tag: sender.tag, toDos: toDos, completed: false, willAscendingOrder: !willAscendingOrder)
-        } else if sender.image(for: .normal) == UIImage(systemName: SystemImages.checked.rawValue) {
-            presenter.editToDo(tag: sender.tag, toDos: toDos, completed: true, willAscendingOrder: !willAscendingOrder)
-        }
+        presenter.updateCompleted(tag: sender.tag, ascending: ascending)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

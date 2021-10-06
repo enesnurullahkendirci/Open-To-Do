@@ -10,20 +10,17 @@ import Foundation
 protocol ListedInteractorType {
     var presenter: ListedPresenterType? {get set}
     
-    func fetchTodos()
+    func fetchTodos(ascending: Bool)
+    func updateCompleted(itemId id: Int, ascending: Bool)
 }
 
 class ListedInteractor: ListedInteractorType {
     var presenter: ListedPresenterType?
-
-    func fetchTodos() {
-        var toDos: [ToDo] = []
-        for i in 0...5{
-            toDos.append(ToDo(id: i, title: "Elma al", startDate: Calendar.current.date(byAdding: .day, value: -2*i, to: Date())!, endDate: Date(), completed: true))
-        }
-        for i in 0...3{
-            toDos.append(ToDo(id: i + 10, title: "Elma Ye", startDate: Calendar.current.date(byAdding: .day, value: -i, to: Date())!, endDate: Calendar.current.date(byAdding: .day, value: 10 + i, to: Date())!, completed: false))
-        }
+    private var coreDataManager = CoreDataManager()
+    
+    func fetchTodos(ascending: Bool) {
+        var coreDataManager = CoreDataManager()
+        let toDos: [ToDo] = coreDataManager.getAllItems()
         var completedToDo: [ToDo] = []
         var uncompletedToDo: [ToDo] = []
         for todo in toDos {
@@ -33,7 +30,16 @@ class ListedInteractor: ListedInteractorType {
                 uncompletedToDo.append(todo)
             }
         }
+        if !ascending {
+            completedToDo.reverse()
+            uncompletedToDo.reverse()
+        }
         guard let presenter = self.presenter else { return }
         presenter.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
+    }
+    
+    func updateCompleted(itemId id: Int, ascending: Bool) {
+        coreDataManager.updateItemComplete(todoId: id)
+        fetchTodos(ascending: ascending)
     }
 }

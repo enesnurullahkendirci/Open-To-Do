@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		695BAA7F270C6B47002BF9D1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695BAA7E270C6B47002BF9D1 /* CoreDataManager.swift */; };
 		69A09CFB2705BBDD0018B4C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09CFA2705BBDD0018B4C3 /* AppDelegate.swift */; };
 		69A09CFD2705BBDD0018B4C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09CFC2705BBDD0018B4C3 /* SceneDelegate.swift */; };
 		69A09D052705BBDD0018B4C3 /* todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D032705BBDD0018B4C3 /* todo.xcdatamodeld */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		695BAA7E270C6B47002BF9D1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		69A09CF72705BBDD0018B4C3 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A09CFA2705BBDD0018B4C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69A09CFC2705BBDD0018B4C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				69A09D1C2705D14B0018B4C3 /* ToDo.swift */,
+				695BAA7E270C6B47002BF9D1 /* CoreDataManager.swift */,
 				69E8A3D4270AE74E00294F92 /* helpers */,
 				69A09D3427070C060018B4C3 /* detail todo */,
 				69A09D112705BBFF0018B4C3 /* listed todo */,
@@ -240,6 +243,7 @@
 				69A09CFB2705BBDD0018B4C3 /* AppDelegate.swift in Sources */,
 				69A09D28270628940018B4C3 /* ListedViewController.swift in Sources */,
 				69A09CFD2705BBDD0018B4C3 /* SceneDelegate.swift in Sources */,
+				695BAA7F270C6B47002BF9D1 /* CoreDataManager.swift in Sources */,
 				69A09D2127060A290018B4C3 /* ListedRouter.swift in Sources */,
 				69A09D1D2705D14B0018B4C3 /* ToDo.swift in Sources */,
 				69A09D192705C39F0018B4C3 /* ListedPresenter.swift in Sources */,

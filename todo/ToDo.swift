@@ -11,6 +11,6 @@ struct ToDo {
     var id: Int
     var title: String
     var startDate: Date
-    var endDate: Date
+    var endDate: Date?
     var completed: Bool
 }
