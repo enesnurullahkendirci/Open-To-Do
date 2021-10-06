@@ -18,7 +18,7 @@ class ListedViewController: UIViewController {
     var searchedToDos: [[ToDo]]?
     var presenter: ListedPresenterType?
     var searching: Bool = false
-    var willAscendingOrder = true
+    var ascending = true
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -28,7 +28,7 @@ class ListedViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ToDoTableViewCell", bundle: nil), forCellReuseIdentifier: "customToDoCell")
         guard let presenter = presenter else { return }
-        presenter.onListedPresenter()
+        presenter.onListedPresenter(ascending: ascending)
         searchBar.searchTextField.clearButtonMode = .never
 
     }
@@ -39,10 +39,10 @@ class ListedViewController: UIViewController {
     }
     
     @IBAction func sort(_ sender: UIBarButtonItem) {
-        guard let toDos = toDos else { return }
         guard let presenter = presenter else { return }
-        presenter.sort(toDo: toDos, willAscendingOrder: willAscendingOrder)
-        willAscendingOrder.toggle()
+        ascending.toggle()
+        presenter.onListedPresenter(ascending: ascending)
+
     }
 }
 
@@ -86,7 +86,7 @@ extension ListedViewController: UITableViewDataSource{
     
     @objc func cellCheckButtonClicked(sender: UIButton!) {
         guard let presenter = self.presenter else { return }
-        presenter.editToDo(tag: sender.tag)
+        presenter.updateCompleted(tag: sender.tag, ascending: ascending)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

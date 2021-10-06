@@ -10,15 +10,15 @@ import Foundation
 protocol ListedInteractorType {
     var presenter: ListedPresenterType? {get set}
     
-    func fetchTodos()
-    func updateCompleted(itemId id: Int)
+    func fetchTodos(ascending: Bool)
+    func updateCompleted(itemId id: Int, ascending: Bool)
 }
 
 class ListedInteractor: ListedInteractorType {
     var presenter: ListedPresenterType?
     private var coreDataManager = CoreDataManager()
     
-    func fetchTodos() {
+    func fetchTodos(ascending: Bool) {
         var coreDataManager = CoreDataManager()
         let toDos: [ToDo] = coreDataManager.getAllItems()
         var completedToDo: [ToDo] = []
@@ -30,12 +30,16 @@ class ListedInteractor: ListedInteractorType {
                 uncompletedToDo.append(todo)
             }
         }
+        if !ascending {
+            completedToDo.reverse()
+            uncompletedToDo.reverse()
+        }
         guard let presenter = self.presenter else { return }
         presenter.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
     }
     
-    func updateCompleted(itemId id: Int) {
+    func updateCompleted(itemId id: Int, ascending: Bool) {
         coreDataManager.updateItemComplete(todoId: id)
-        fetchTodos()
+        fetchTodos(ascending: ascending)
     }
 }
