@@ -16,7 +16,7 @@ protocol ListedPresenterType {
     
     func onListedPresenter()
     func onTodosFetched(toDos: [[ToDo]])
-    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool, willAscendingOrder: Bool)
+    func editToDo(tag id: Int)
     func didSelect(on view: ListedViewControllerType, color: UIColor)
     func sort(toDo: [[ToDo]], willAscendingOrder: Bool)
     func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]]
@@ -43,27 +43,32 @@ class ListedPresenter: ListedPresenterType {
         router.pushToDetail(on: view, color: color)
     }
     
-    func editToDo(tag id: Int, toDos: [[ToDo]], completed: Bool, willAscendingOrder: Bool)  {
-        var funcToDos: [[ToDo]] = toDos
-        if completed {
-            if let todoIndex = toDos[1].firstIndex(where: {$0.id == id}) {
-                var toDo = toDos[1][todoIndex]
-                toDo.completed.toggle()
-                funcToDos[0].append(toDo)
-                funcToDos[1].remove(at: todoIndex)
-            }
-        }else {
-            if let todoIndex = toDos[0].firstIndex(where: {$0.id == id}) {
-                var toDo = toDos[0][todoIndex]
-                toDo.completed.toggle()
-                funcToDos[1].append(toDo)
-                funcToDos[0].remove(at: todoIndex)
-            }
-        }
-        sort(toDo: funcToDos, willAscendingOrder: willAscendingOrder)
+    func editToDo(tag id: Int) {
+        guard let interactor = interactor else { return }
+        interactor.updateCompleted(itemId: id)
     }
     
-    func sort(toDo: [[ToDo]], willAscendingOrder: Bool) {
+//    func editToDo2(tag id: Int, toDos: [[ToDo]], completed: Bool, willAscendingOrder: Bool)  {
+//        var funcToDos: [[ToDo]] = toDos
+//        if completed {
+//            if let todoIndex = toDos[1].firstIndex(where: {$0.id == id}) {
+//                var toDo = toDos[1][todoIndex]
+//                toDo.completed.toggle()
+//                funcToDos[0].append(toDo)
+//                funcToDos[1].remove(at: todoIndex)
+//            }
+//        }else {
+//            if let todoIndex = toDos[0].firstIndex(where: {$0.id == id}) {
+//                var toDo = toDos[0][todoIndex]
+//                toDo.completed.toggle()
+//                funcToDos[1].append(toDo)
+//                funcToDos[0].remove(at: todoIndex)
+//            }
+//        }
+//        sort(toDo: funcToDos, willAscendingOrder: willAscendingOrder)
+//    }
+    
+    func sort(toDo: [[ToDo]], willAscendingOrder: Bool) { // can be move
         var todo0: [ToDo]?
         var todo1: [ToDo]?
         if willAscendingOrder {
