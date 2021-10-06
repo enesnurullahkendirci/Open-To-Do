@@ -16,38 +16,38 @@ struct CoreDataManager {
     mutating func getAllItems() -> [ToDo] {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ToDoItem")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ToDoItemEnum.entityName.rawValue)
         do {
             let fetchResults = try context.fetch(fetchRequest)
             for item in fetchResults as! [NSManagedObject] {
-                let id = item.value(forKey: "id") as! Int
-                let title = item.value(forKey: "title") as! String
-                let startDate = item.value(forKey: "startDate") as! Date
-                let endDate = item.value(forKey: "endDate") as? Date
-                let completed = item.value(forKey: "completed") as! Bool
+                let id = item.value(forKey: ToDoItemEnum.id.rawValue) as! Int
+                let title = item.value(forKey: ToDoItemEnum.title.rawValue) as! String
+                let startDate = item.value(forKey: ToDoItemEnum.startDate.rawValue) as! Date
+                let endDate = item.value(forKey: ToDoItemEnum.endDate.rawValue) as? Date
+                let completed = item.value(forKey: ToDoItemEnum.completed.rawValue) as! Bool
                 let toDo = ToDo(id: id, title: title, startDate: startDate, endDate: endDate, completed: completed)
                 toDos.append(toDo)
             }
-        } catch {
-            print("Fetch Error")
+        } catch let nserror as NSError {
+            print("ERROR: Coredata error \(nserror)")
         }
         return toDos
     }
     
     mutating func createItem(id: Int, title: String, endDate: Date?, completed: Bool) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        guard let entity = NSEntityDescription.entity(forEntityName: "ToDoItem", in: context) else { return }
+        guard let entity = NSEntityDescription.entity(forEntityName: ToDoItemEnum.entityName.rawValue, in: context) else { return }
         
         let newItem = NSManagedObject(entity: entity, insertInto: context)
-        newItem.setValue(id, forKey: "id")
-        newItem.setValue(title, forKey: "title")
-        newItem.setValue(Date(), forKey: "startDate")
-        newItem.setValue(endDate, forKey: "endDate")
-        newItem.setValue(completed, forKey: "completed")
+        newItem.setValue(id, forKey: ToDoItemEnum.id.rawValue)
+        newItem.setValue(title, forKey: ToDoItemEnum.title.rawValue)
+        newItem.setValue(Date(), forKey: ToDoItemEnum.startDate.rawValue)
+        newItem.setValue(endDate, forKey: ToDoItemEnum.endDate.rawValue)
+        newItem.setValue(completed, forKey: ToDoItemEnum.completed.rawValue)
         do {
             try context.save()
-        } catch  {
-            print("create catch")
+        } catch let nserror as NSError {
+            print("ERROR: Coredata error \(nserror)")
         }
     }
     
@@ -55,7 +55,7 @@ struct CoreDataManager {
         var toDo: ToDoItem
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
-        fetchToDo.predicate = NSPredicate(format: "id == %d", id as Int)
+        fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
         
         let results = try? context.fetch(fetchToDo)
         
@@ -67,19 +67,8 @@ struct CoreDataManager {
         toDo.completed.toggle()
         do {
             try context.save()
-        } catch  {
-            print("update item complete catch")
+        } catch let nserror as NSError {
+            print("ERROR: Coredata error \(nserror)")
         }
     }
-    
-    //    func updateItem(item: ToDoItem, title: String, endDate: Date? = nil) {
-    //        item.title = title
-    //        item.endDate = endDate
-    //        do {
-    //            try context.save()
-    //        } catch  {
-    //
-    //        }
-    //    }
-    
 }
