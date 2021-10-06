@@ -39,7 +39,11 @@ class ToDoTableViewCell: UITableViewCell {
         guard let toDo = self.toDo else { return }
         todoText.text = toDo.title
         startDate.text = toDo.startDate.dateToString()
-        endDate.text = toDo.endDate.dateToString()
+        if toDo.endDate == nil{
+            endDate.text = ""
+        } else {
+            endDate.text = toDo.endDate?.dateToString()
+        }
         checkButton.tag = toDo.id
         checked = toDo.completed
         setImage()
