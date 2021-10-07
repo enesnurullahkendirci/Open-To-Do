@@ -16,10 +16,9 @@ protocol ListedInteractorType {
 
 class ListedInteractor: ListedInteractorType {
     var presenter: ListedPresenterType?
-    private var coreDataManager = CoreDataManager()
+    private var coreDataManager: CoreDataManagerProtocol = CoreDataManager()
     
     func fetchTodos(ascending: Bool) {
-        var coreDataManager = CoreDataManager()
         let toDos: [ToDo] = coreDataManager.getAllItems()
         var completedToDo: [ToDo] = []
         var uncompletedToDo: [ToDo] = []
