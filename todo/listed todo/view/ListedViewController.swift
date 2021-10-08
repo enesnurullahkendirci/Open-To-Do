@@ -35,7 +35,7 @@ class ListedViewController: UIViewController {
     
     @IBAction func addClicked(_ sender: UIBarButtonItem) {
         guard let presenter = presenter else { return }
-        presenter.didSelect(on: self, color: UIColor.systemCyan) //route to detail with random data.
+        presenter.didSelect(on: self, todoId: nil)
     }
     
     @IBAction func sort(_ sender: UIBarButtonItem) {

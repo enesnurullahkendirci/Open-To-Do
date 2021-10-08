@@ -9,15 +9,14 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    var backgroundColor: UIColor //take fake data
+    var todoId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = backgroundColor
     }
 
-    init(color: UIColor) {
-        self.backgroundColor = color
+    init(todoId id: Int?) {
+        self.todoId = id
         super.init(nibName: nil, bundle: nil)
     }
     

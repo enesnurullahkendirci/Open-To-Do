@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 protocol ListedPresenterType {
     
@@ -16,7 +15,7 @@ protocol ListedPresenterType {
     
     func onListedPresenter(ascending: Bool)
     func updateCompleted(tag id: Int, ascending: Bool)
-    func didSelect(on view: ListedViewControllerType, color: UIColor)
+    func didSelect(on view: ListedViewControllerType, todoId id: Int?)
     func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]]
     
     func onTodosFetched(toDos: [[ToDo]])
@@ -36,9 +35,12 @@ extension ListedPresenter {
         guard let interactor = interactor else { return }
         interactor.fetchTodos(ascending: ascending)
     }
-    func didSelect(on view: ListedViewControllerType, color: UIColor) {
+    func didSelect(on view: ListedViewControllerType, todoId id: Int?) {
         guard let router = router else { return }
-        router.pushToDetail(on: view, color: color)
+        guard let id = id else {
+            router.pushToDetail(on: view, todoId: nil)
+            return }
+        router.pushToDetail(on: view, todoId: id)
     }
     
     func updateCompleted(tag id: Int, ascending: Bool) {
