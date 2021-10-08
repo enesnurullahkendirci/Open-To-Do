@@ -19,4 +19,5 @@ enum ToDoItemEnum: String {
     case startDate = "startDate"
     case endDate = "endDate"
     case completed = "completed"
+    case color = "color"
 }
