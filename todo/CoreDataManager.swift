@@ -10,7 +10,7 @@ import UIKit
 
 protocol CoreDataManagerProtocol {
     mutating func getAllItems() -> [ToDo]
-    mutating func createItem(id: Int, title: String, endDate: Date?)
+    mutating func createItem(id: Int, title: String, endDate: Date?, color: UIColor)
     func updateItemComplete(todoId id: Int)
 }
 
@@ -29,7 +29,8 @@ struct CoreDataManager: CoreDataManagerProtocol {
                 let startDate = item.value(forKey: ToDoItemEnum.startDate.rawValue) as! Date
                 let endDate = item.value(forKey: ToDoItemEnum.endDate.rawValue) as? Date
                 let completed = item.value(forKey: ToDoItemEnum.completed.rawValue) as! Bool
-                let toDo = ToDo(id: id, title: title, startDate: startDate, endDate: endDate, completed: completed)
+                let color = item.value(forKey: ToDoItemEnum.color.rawValue) as! UIColor
+                let toDo = ToDo(id: id, title: title, startDate: startDate, endDate: endDate, completed: completed, color: color)
                 toDos.append(toDo)
             }
         } catch let nserror as NSError {
@@ -38,7 +39,7 @@ struct CoreDataManager: CoreDataManagerProtocol {
         return toDos
     }
     
-    mutating func createItem(id: Int, title: String, endDate: Date?) {
+    mutating func createItem(id: Int, title: String, endDate: Date?, color: UIColor) {
         guard let entity = NSEntityDescription.entity(forEntityName: ToDoItemEnum.entityName.rawValue, in: context)
         else { return }
         let newItem = NSManagedObject(entity: entity, insertInto: context)
@@ -47,6 +48,7 @@ struct CoreDataManager: CoreDataManagerProtocol {
         newItem.setValue(Date(), forKey: ToDoItemEnum.startDate.rawValue)
         newItem.setValue(endDate, forKey: ToDoItemEnum.endDate.rawValue)
         newItem.setValue(false, forKey: ToDoItemEnum.completed.rawValue)
+        newItem.setValue(color, forKey: ToDoItemEnum.color.rawValue)
         contextSave()
     }
     

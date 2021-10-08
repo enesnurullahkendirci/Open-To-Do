@@ -5,7 +5,7 @@
 //  Created by Enes N KENDİRCİ on 30.09.2021.
 //
 // develop branch
-import Foundation
+import UIKit
 
 struct ToDo {
     var id: Int
@@ -13,4 +13,5 @@ struct ToDo {
     var startDate: Date
     var endDate: Date?
     var completed: Bool
+    var color: UIColor
 }
