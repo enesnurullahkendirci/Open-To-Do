@@ -113,6 +113,7 @@
                 <outlet property="endDate" destination="OUE-Ss-kRP" id="CQh-dB-uQC"/>
                 <outlet property="startDate" destination="3sh-Aj-WCl" id="dz2-GD-mug"/>
                 <outlet property="todoText" destination="H18-AW-fzF" id="GjI-NW-7g3"/>
+                <outlet property="view" destination="yI0-v4-37Q" id="lzp-mJ-HaW"/>
             </connections>
             <point key="canvasLocation" x="179.71014492753625" y="99.441964285714278"/>
         </tableViewCell>
