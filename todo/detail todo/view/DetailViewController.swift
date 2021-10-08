@@ -11,7 +11,11 @@ class DetailViewController: UIViewController {
 
     var todoId: Int?
     
+    @IBOutlet weak var detailTextView: UITextView!
+    @IBOutlet weak var datePicker: UITextField!
+    
     override func viewDidLoad() {
+        createDatePicker()
         super.viewDidLoad()
     }
 
@@ -24,14 +28,22 @@ class DetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private let picker = UIDatePicker()
+    func createDatePicker() {
+        picker.datePickerMode = .dateAndTime
+        picker.preferredDatePickerStyle = .wheels
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+        toolbar.setItems([doneButton], animated: true)
+                datePicker.inputAccessoryView = toolbar
+        datePicker.inputView = picker
     }
-    */
+    
+    @objc func doneClicked(){
+        datePicker.text = picker.date.dateToString()
+        self.view.endEditing(true)
+    }
 
 }
