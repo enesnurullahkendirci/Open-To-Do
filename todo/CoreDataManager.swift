@@ -29,7 +29,7 @@ struct CoreDataManager: CoreDataManagerProtocol {
                 let startDate = item.value(forKey: ToDoItemEnum.startDate.rawValue) as! Date
                 let endDate = item.value(forKey: ToDoItemEnum.endDate.rawValue) as? Date
                 let completed = item.value(forKey: ToDoItemEnum.completed.rawValue) as! Bool
-                let toDo = ToDo(id: id, title: title, startDate: startDate, endDate: endDate, completed: completed)
+                let toDo = ToDo(id: id, title: title, startDate: startDate, endDate: endDate, completed: completed, color: .systemIndigo)
                 toDos.append(toDo)
             }
         } catch let nserror as NSError {
