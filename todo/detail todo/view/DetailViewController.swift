@@ -18,7 +18,6 @@ class DetailViewController: UIViewController {
     @IBOutlet var colorButtons: [UIButton]!
     
     override func viewDidLoad() {
-        view.backgroundColor = .systemRed
         createDatePicker()
         super.viewDidLoad()
     }
