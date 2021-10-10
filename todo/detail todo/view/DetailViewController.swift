@@ -43,6 +43,7 @@ class DetailViewController: UIViewController {
     private let picker = UIDatePicker()
     func createDatePicker() {
         picker.datePickerMode = .dateAndTime
+        picker.minimumDate = Date()
         picker.preferredDatePickerStyle = .wheels
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
