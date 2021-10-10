@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +13,16 @@
             <connections>
                 <outlet property="datePicker" destination="dLy-QI-WKa" id="bAg-td-tAR"/>
                 <outlet property="detailTextView" destination="j78-Yn-VIY" id="MmX-cP-eYf"/>
+                <outlet property="todoTitle" destination="2Va-UG-6vB" id="fV7-KK-lvG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="colorButtons" destination="l0H-NZ-B9J" collectionClass="NSMutableArray" id="gDU-nK-a74"/>
+                <outletCollection property="colorButtons" destination="RIt-fO-S7W" collectionClass="NSMutableArray" id="0vC-fs-LLL"/>
+                <outletCollection property="colorButtons" destination="duy-JV-LRk" collectionClass="NSMutableArray" id="VaH-PV-sGh"/>
+                <outletCollection property="colorButtons" destination="p9g-xS-OMv" collectionClass="NSMutableArray" id="XOg-mJ-0c4"/>
+                <outletCollection property="colorButtons" destination="ToP-S1-Efv" collectionClass="NSMutableArray" id="zbZ-of-wZU"/>
+                <outletCollection property="colorButtons" destination="e7j-CI-xxF" collectionClass="NSMutableArray" id="wfD-Vk-1s2"/>
+                <outletCollection property="colorButtons" destination="A4Q-xL-fqM" collectionClass="NSMutableArray" id="PHF-QI-XRz"/>
+                <outletCollection property="colorButtons" destination="vcO-Zz-gNo" collectionClass="NSMutableArray" id="ahn-0Y-EPG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -28,33 +38,127 @@
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Va-UG-6vB">
                     <rect key="frame" x="20.5" y="117" width="373" height="41"/>
+                    <color key="backgroundColor" systemColor="placeholderTextColor"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dLy-QI-WKa">
                     <rect key="frame" x="20.5" y="435" width="373" height="41"/>
+                    <color key="backgroundColor" systemColor="placeholderTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="j78-Yn-VIY">
                     <rect key="frame" x="20.5" y="174" width="373" height="245"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="placeholderTextColor"/>
                     <color key="textColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rvc-Oj-RH1">
+                    <rect key="frame" x="20.5" y="492" width="373" height="49"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIt-fO-S7W">
+                            <rect key="frame" x="0.0" y="0.0" width="47" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" imagePadding="0.0">
+                                <imageReference key="image" image="smallcircle.filled.circle" catalog="system"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="9Qw-jN-dk4"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duy-JV-LRk">
+                            <rect key="frame" x="47" y="0.0" width="46.5" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
+                                <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="yh3-pP-i0U"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9g-xS-OMv">
+                            <rect key="frame" x="93.5" y="0.0" width="46.5" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
+                                <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="dRw-IO-PvO"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-S1-Efv">
+                            <rect key="frame" x="140" y="0.0" width="46.5" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
+                                <color key="baseForegroundColor" systemColor="systemTealColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="Pe7-FW-OY5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0H-NZ-B9J">
+                            <rect key="frame" x="186.5" y="0.0" width="46.5" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
+                                <color key="baseForegroundColor" systemColor="systemBlueColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="8Sf-c1-BlA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7j-CI-xxF">
+                            <rect key="frame" x="233" y="0.0" width="46.5" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
+                                <color key="baseForegroundColor" systemColor="systemIndigoColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="LEK-gc-FBT"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4Q-xL-fqM">
+                            <rect key="frame" x="279.5" y="0.0" width="46.5" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
+                                <color key="baseForegroundColor" systemColor="systemPurpleColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="ekl-Xq-Wvm"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcO-Zz-gNo">
+                            <rect key="frame" x="326" y="0.0" width="47" height="49"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="black"/>
+                                <color key="baseForegroundColor" systemColor="systemPinkColor"/>
+                            </buttonConfiguration>
+                            <connections>
+                                <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="fMO-eb-qHH"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="placeholderTextColor"/>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="dLy-QI-WKa" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.9" id="5I9-mQ-w4o"/>
+                <constraint firstItem="Rvc-Oj-RH1" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.9" id="7iy-RA-2uw"/>
                 <constraint firstItem="dLy-QI-WKa" firstAttribute="top" secondItem="j78-Yn-VIY" secondAttribute="bottom" constant="16" id="7oI-fa-xAf"/>
                 <constraint firstItem="j78-Yn-VIY" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.3" id="8hZ-4q-mBG"/>
                 <constraint firstItem="j78-Yn-VIY" firstAttribute="top" secondItem="2Va-UG-6vB" secondAttribute="bottom" constant="16" id="Bly-sj-TNq"/>
                 <constraint firstItem="2Va-UG-6vB" firstAttribute="top" secondItem="I41-i2-Lic" secondAttribute="bottom" constant="16" id="COQ-Ja-49W"/>
                 <constraint firstItem="I41-i2-Lic" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.9" id="JSF-Vo-6Gp"/>
+                <constraint firstItem="Rvc-Oj-RH1" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.06" id="JUP-Ho-hnX"/>
                 <constraint firstItem="2Va-UG-6vB" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.9" id="JVc-aS-t8P"/>
                 <constraint firstItem="dLy-QI-WKa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OTh-cw-vmy"/>
+                <constraint firstItem="Rvc-Oj-RH1" firstAttribute="top" secondItem="dLy-QI-WKa" secondAttribute="bottom" constant="16" id="Tzd-51-0Rg"/>
                 <constraint firstItem="dLy-QI-WKa" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.05" id="ZiZ-pH-7Lm"/>
                 <constraint firstItem="I41-i2-Lic" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="0.05" id="ZsR-nJ-gLc"/>
                 <constraint firstItem="j78-Yn-VIY" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.9" id="e7O-ay-WJk"/>
@@ -63,16 +167,46 @@
                 <constraint firstItem="I41-i2-Lic" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lop-fN-PeC"/>
                 <constraint firstItem="j78-Yn-VIY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pz5-YZ-NEL"/>
                 <constraint firstItem="2Va-UG-6vB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="rVa-J2-qqh"/>
+                <constraint firstItem="Rvc-Oj-RH1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zvi-6y-uri"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="79.6875"/>
         </view>
     </objects>
     <resources>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="smallcircle.filled.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

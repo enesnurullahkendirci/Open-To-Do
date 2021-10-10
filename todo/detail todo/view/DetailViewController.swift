@@ -11,10 +11,14 @@ class DetailViewController: UIViewController {
 
     var todoId: Int?
     
+    @IBOutlet weak var todoTitle: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var datePicker: UITextField!
     
+    @IBOutlet var colorButtons: [UIButton]!
+    
     override func viewDidLoad() {
+        view.backgroundColor = .systemRed
         createDatePicker()
         super.viewDidLoad()
     }
@@ -26,6 +30,14 @@ class DetailViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @IBAction func colorButtonClicked(_ sender: UIButton) {
+        view.backgroundColor = UIColor().TagToColor(tag: sender.tag)
+        for colorButton in colorButtons {
+            colorButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        }
+        sender.setImage(UIImage(systemName: "smallcircle.filled.circle"), for: .normal)
     }
     
     private let picker = UIDatePicker()
