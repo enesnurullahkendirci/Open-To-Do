@@ -11,6 +11,7 @@ class DetailViewController: UIViewController {
 
     var todoId: Int?
     
+    @IBOutlet weak var detailScreenTitle: UILabel!
     @IBOutlet weak var todoTitle: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var datePicker: UITextField!
@@ -19,6 +20,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         createDatePicker()
+        setScreenTitle()
         super.viewDidLoad()
     }
 
@@ -39,8 +41,17 @@ class DetailViewController: UIViewController {
         sender.setImage(UIImage(systemName: "smallcircle.filled.circle"), for: .normal)
     }
     
+    private func setScreenTitle(){
+        guard let todoId = todoId else {
+            detailScreenTitle.text = "Add To-Do"
+            return
+        }
+        //when detail-screen opened from tablecell
+        detailScreenTitle.text = String(todoId)
+    }
+    
     private let picker = UIDatePicker()
-    func createDatePicker() {
+    private func createDatePicker() {
         picker.datePickerMode = .dateAndTime
         picker.minimumDate = Date()
         picker.preferredDatePickerStyle = .wheels
@@ -53,7 +64,7 @@ class DetailViewController: UIViewController {
         datePicker.inputView = picker
     }
     
-    @objc func doneClicked(){
+    @objc private func doneClicked(){
         datePicker.text = picker.date.dateToString()
         self.view.endEditing(true)
     }

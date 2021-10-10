@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="todo" customModuleProvider="target">
             <connections>
                 <outlet property="datePicker" destination="dLy-QI-WKa" id="bAg-td-tAR"/>
+                <outlet property="detailScreenTitle" destination="I41-i2-Lic" id="HBf-VU-81V"/>
                 <outlet property="detailTextView" destination="j78-Yn-VIY" id="MmX-cP-eYf"/>
                 <outlet property="todoTitle" destination="2Va-UG-6vB" id="fV7-KK-lvG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -52,7 +53,7 @@
                     <rect key="frame" x="20.5" y="174" width="373" height="245"/>
                     <color key="backgroundColor" systemColor="placeholderTextColor"/>
                     <color key="textColor" systemColor="labelColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Rvc-Oj-RH1">
