@@ -9,16 +9,16 @@ import CoreData
 import UIKit
 
 protocol CoreDataManagerProtocol {
-    mutating func getAllItems() -> [ToDo]
-    mutating func createItem(id: Int, title: String, endDate: Date?, color: UIColor)
+    func getAllItems() -> [ToDo]
+    func createItem(id: Int, title: String, endDate: Date?, color: UIColor)
     func updateItemComplete(todoId id: Int)
 }
 
-struct CoreDataManager: CoreDataManagerProtocol {
+class CoreDataManager: CoreDataManagerProtocol {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    mutating func getAllItems() -> [ToDo] {
+    func getAllItems() -> [ToDo] {
         var toDos: [ToDo] = []
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: ToDoItemEnum.entityName.rawValue)
         do {
@@ -39,7 +39,7 @@ struct CoreDataManager: CoreDataManagerProtocol {
         return toDos
     }
     
-    mutating func createItem(id: Int, title: String, endDate: Date?, color: UIColor) {
+    func createItem(id: Int, title: String, endDate: Date?, color: UIColor) {
         guard let entity = NSEntityDescription.entity(forEntityName: ToDoItemEnum.entityName.rawValue, in: context)
         else { return }
         let newItem = NSManagedObject(entity: entity, insertInto: context)
