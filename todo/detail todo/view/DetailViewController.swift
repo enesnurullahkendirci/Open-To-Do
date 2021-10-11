@@ -8,8 +8,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
-    var todoId: Int?
+    private var detailViewModel: DetailViewModelType = DetailViewModel()
+    private var todoId: Int?
     
     @IBOutlet weak var detailScreenTitle: UILabel!
     @IBOutlet weak var todoTitle: UITextField!
@@ -20,7 +20,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         createDatePicker()
-        setScreenTitle()
+        configureScreen()
         super.viewDidLoad()
     }
 
@@ -43,13 +43,17 @@ class DetailViewController: UIViewController {
         sender.setImage(UIImage(systemName: DetailColorPickerImages.selected.rawValue), for: .normal)
     }
     
-    private func setScreenTitle(){
+    private func configureScreen(){
         guard let todoId = todoId else {
             detailScreenTitle.text = "Add To-Do"
             return
         }
-        //when detail-screen opened from tablecell
-        detailScreenTitle.text = String(todoId)
+        let toDo = detailViewModel.getToDo(id: todoId)
+        detailScreenTitle.text = toDo.title
+        todoTitle.text = toDo.title
+        view.backgroundColor = toDo.color
+        guard let endDate = toDo.endDate else { return }
+        datePicker.text = endDate.dateToString()
     }
     
     private let picker = UIDatePicker()

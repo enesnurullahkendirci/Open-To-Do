@@ -12,6 +12,8 @@ protocol CoreDataManagerProtocol {
     func getAllItems() -> [ToDo]
     func createItem(id: Int, title: String, endDate: Date?, color: UIColor)
     func updateItemComplete(todoId id: Int)
+    
+    func getItemFromId(todoId id: Int) -> ToDo
 }
 
 class CoreDataManager: CoreDataManagerProtocol {
@@ -64,6 +66,26 @@ class CoreDataManager: CoreDataManagerProtocol {
         }
         toDo.completed.toggle()
         contextSave()
+    }
+    
+    func getItemFromId(todoId id: Int) -> ToDo {
+        var item: NSManagedObject
+        let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
+        fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
+        let results = try? context.fetch(fetchToDo)
+        if results?.count == 0 {
+            item = ToDoItem(context: context)
+        } else {
+            item = (results?.first)!
+        }
+        let id = item.value(forKey: ToDoItemEnum.id.rawValue) as! Int
+        let title = item.value(forKey: ToDoItemEnum.title.rawValue) as! String
+        let startDate = item.value(forKey: ToDoItemEnum.startDate.rawValue) as! Date
+        let endDate = item.value(forKey: ToDoItemEnum.endDate.rawValue) as? Date
+        let completed = item.value(forKey: ToDoItemEnum.completed.rawValue) as! Bool
+        let color = item.value(forKey: ToDoItemEnum.color.rawValue) as! UIColor
+        let toDo = ToDo(id: id, title: title, startDate: startDate, endDate: endDate, completed: completed, color: color)
+        return toDo
     }
     
     private func contextSave(){
