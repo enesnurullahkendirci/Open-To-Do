@@ -52,8 +52,8 @@ class DetailViewController: UIViewController {
         detailScreenTitle.text = toDo.title
         todoTitle.text = toDo.title
         view.backgroundColor = toDo.color
-        guard let endDate = toDo.endDate else { return }
-        datePicker.text = endDate.dateToString()
+        detailTextView.text = toDo.detail != nil ? toDo.detail : ""
+        datePicker.text = toDo.endDate != nil ? toDo.endDate!.dateToString() : ""
     }
     
     private let picker = UIDatePicker()
