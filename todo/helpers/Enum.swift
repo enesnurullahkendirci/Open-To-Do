@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SystemImages: String {
+enum ListedCheckImages: String {
     case checked = "checkmark.seal.fill"
     case unchecked = "checkmark.seal"
 }
@@ -20,4 +20,14 @@ enum ToDoItemEnum: String {
     case endDate = "endDate"
     case completed = "completed"
     case color = "color"
+}
+
+enum TodoCell: String {
+    case name = "ToDoTableViewCell"
+    case identifier = "customToDoCell"
+}
+
+enum DetailColorPickerImages: String {
+    case unselected = "circle.fill"
+    case selected = "smallcircle.filled.circle"
 }

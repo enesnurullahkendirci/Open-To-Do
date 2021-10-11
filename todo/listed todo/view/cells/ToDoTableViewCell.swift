@@ -30,8 +30,8 @@ class ToDoTableViewCell: UITableViewCell {
     }
     
     func setImage() {
-        guard let checkedImage = UIImage(systemName: SystemImages.checked.rawValue) else { return }
-        guard let uncheckedImage = UIImage(systemName: SystemImages.unchecked.rawValue) else { return }
+        guard let checkedImage = UIImage(systemName: ListedCheckImages.checked.rawValue) else { return }
+        guard let uncheckedImage = UIImage(systemName: ListedCheckImages.unchecked.rawValue) else { return }
         guard let checked = checked else { return }
         checked ? checkButton.setImage(checkedImage, for: .normal) : checkButton.setImage(uncheckedImage, for: .normal)
     }

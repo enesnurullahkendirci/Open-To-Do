@@ -38,9 +38,9 @@ class DetailViewController: UIViewController {
             self.view.backgroundColor = UIColor().TagToColor(tag: sender.tag)
         }
         for colorButton in colorButtons {
-            colorButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+            colorButton.setImage(UIImage(systemName: DetailColorPickerImages.unselected.rawValue), for: .normal)
         }
-        sender.setImage(UIImage(systemName: "smallcircle.filled.circle"), for: .normal)
+        sender.setImage(UIImage(systemName: DetailColorPickerImages.selected.rawValue), for: .normal)
     }
     
     private func setScreenTitle(){

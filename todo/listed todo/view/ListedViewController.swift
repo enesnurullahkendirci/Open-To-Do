@@ -26,7 +26,7 @@ class ListedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: "ToDoTableViewCell", bundle: nil), forCellReuseIdentifier: "customToDoCell")
+        tableView.register(UINib(nibName: TodoCell.name.rawValue, bundle: nil), forCellReuseIdentifier: TodoCell.identifier.rawValue)
         guard let presenter = presenter else { return }
         presenter.onListedPresenter(ascending: ascending)
         searchBar.searchTextField.clearButtonMode = .never
@@ -76,7 +76,7 @@ extension ListedViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let toDos = getArray()
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customToDoCell") as! ToDoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TodoCell.identifier.rawValue) as! ToDoTableViewCell
         let toDo = toDos[indexPath.section][indexPath.row]
         cell.toDo = toDo
         cell.configureCell()
