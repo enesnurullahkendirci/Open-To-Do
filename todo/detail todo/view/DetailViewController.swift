@@ -54,6 +54,14 @@ class DetailViewController: UIViewController {
         view.backgroundColor = toDo.color
         detailTextView.text = toDo.detail != nil ? toDo.detail : ""
         datePicker.text = toDo.endDate != nil ? toDo.endDate!.dateToString() : ""
+        for button in colorButtons {
+            if button.tag == toDo.color.ColorToTag() {
+                button.setImage(UIImage(systemName: DetailColorPickerImages.selected.rawValue), for: .normal)
+            }
+            else {
+                button.setImage(UIImage(systemName: DetailColorPickerImages.unselected.rawValue), for: .normal)
+            }
+        }
     }
     
     private let picker = UIDatePicker()

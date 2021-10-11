@@ -30,4 +30,27 @@ extension UIColor{
             return UIColor.systemRed
         }
     }
+    
+    func ColorToTag() -> Int {
+        switch self {
+        case UIColor.systemRed:
+            return 0
+        case UIColor.systemOrange:
+            return 1
+        case UIColor.systemGreen:
+            return 2
+        case UIColor.systemTeal:
+            return 3
+        case UIColor.systemBlue:
+            return 4
+        case UIColor.systemIndigo:
+            return 5
+        case UIColor.systemPurple:
+            return 6
+        case UIColor.systemPurple:
+            return 7
+        default:
+            return 0
+        }
+    }
 }

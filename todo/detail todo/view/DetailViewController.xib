@@ -16,14 +16,14 @@
                 <outlet property="detailTextView" destination="j78-Yn-VIY" id="MmX-cP-eYf"/>
                 <outlet property="todoTitle" destination="2Va-UG-6vB" id="fV7-KK-lvG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="colorButtons" destination="l0H-NZ-B9J" collectionClass="NSMutableArray" id="gDU-nK-a74"/>
                 <outletCollection property="colorButtons" destination="RIt-fO-S7W" collectionClass="NSMutableArray" id="0vC-fs-LLL"/>
                 <outletCollection property="colorButtons" destination="duy-JV-LRk" collectionClass="NSMutableArray" id="VaH-PV-sGh"/>
                 <outletCollection property="colorButtons" destination="p9g-xS-OMv" collectionClass="NSMutableArray" id="XOg-mJ-0c4"/>
                 <outletCollection property="colorButtons" destination="ToP-S1-Efv" collectionClass="NSMutableArray" id="zbZ-of-wZU"/>
-                <outletCollection property="colorButtons" destination="e7j-CI-xxF" collectionClass="NSMutableArray" id="wfD-Vk-1s2"/>
-                <outletCollection property="colorButtons" destination="A4Q-xL-fqM" collectionClass="NSMutableArray" id="PHF-QI-XRz"/>
-                <outletCollection property="colorButtons" destination="vcO-Zz-gNo" collectionClass="NSMutableArray" id="ahn-0Y-EPG"/>
+                <outletCollection property="colorButtons" destination="l0H-NZ-B9J" collectionClass="NSMutableArray" id="OUl-rT-9R7"/>
+                <outletCollection property="colorButtons" destination="e7j-CI-xxF" collectionClass="NSMutableArray" id="odO-9e-vDI"/>
+                <outletCollection property="colorButtons" destination="A4Q-xL-fqM" collectionClass="NSMutableArray" id="5DV-qk-9Dy"/>
+                <outletCollection property="colorButtons" destination="vcO-Zz-gNo" collectionClass="NSMutableArray" id="gbJ-1K-jC6"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
