@@ -57,7 +57,7 @@ extension ListedViewController: ListedViewControllerType{
     }
 }
 
-extension ListedViewController: UITableViewDataSource{
+extension ListedViewController: UITableViewDataSource, UITableViewDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let toDos = toDos else { return 0 }
@@ -82,6 +82,15 @@ extension ListedViewController: UITableViewDataSource{
         cell.configureCell()
         cell.checkButton.addTarget(self, action: #selector(cellCheckButtonClicked), for: .touchUpInside)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? ToDoTableViewCell {
+            guard let todo = cell.toDo else { return }
+            let id = todo.id
+            guard let presenter = presenter else { return }
+            presenter.didSelect(on: self, todoId: id)
+        }
     }
     
     @objc func cellCheckButtonClicked(sender: UIButton!) {

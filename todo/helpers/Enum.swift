@@ -16,6 +16,7 @@ enum ToDoItemEnum: String {
     case entityName = "ToDoItem"
     case id = "id"
     case title = "title"
+    case detail = "detail"
     case startDate = "startDate"
     case endDate = "endDate"
     case completed = "completed"

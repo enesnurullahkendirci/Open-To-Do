@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+protocol DetailViewModelType {
+    func getToDo(id: Int) -> ToDo
+}
+
+class DetailViewModel: DetailViewModelType {
+    private var coreDataManager: CoreDataManagerProtocol = CoreDataManager()
+    
+    func getToDo(id: Int) -> ToDo {
+        let toDo = coreDataManager.getItemFromId(todoId: id)
+        return toDo
+    }
+}

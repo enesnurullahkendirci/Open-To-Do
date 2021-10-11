@@ -10,6 +10,7 @@ import UIKit
 struct ToDo {
     var id: Int
     var title: String
+    var detail: String?
     var startDate: Date
     var endDate: Date?
     var completed: Bool
