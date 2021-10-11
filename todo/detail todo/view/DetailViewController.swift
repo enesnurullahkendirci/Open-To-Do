@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
     var todoId: Int?
     
     @IBOutlet weak var detailScreenTitle: UILabel!
@@ -34,7 +34,9 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func colorButtonClicked(_ sender: UIButton) {
-        view.backgroundColor = UIColor().TagToColor(tag: sender.tag)
+        UIView.animate(withDuration: 1) {
+            self.view.backgroundColor = UIColor().TagToColor(tag: sender.tag)
+        }
         for colorButton in colorButtons {
             colorButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
         }
@@ -60,7 +62,7 @@ class DetailViewController: UIViewController {
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
         toolbar.setItems([doneButton], animated: true)
-                datePicker.inputAccessoryView = toolbar
+        datePicker.inputAccessoryView = toolbar
         datePicker.inputView = picker
     }
     
