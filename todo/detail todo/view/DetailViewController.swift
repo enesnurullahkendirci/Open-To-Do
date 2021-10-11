@@ -59,11 +59,16 @@ class DetailViewController: UIViewController {
         picker.preferredDatePickerStyle = .wheels
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        
+        let clearButton = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: #selector(undoClicked))
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
-        toolbar.setItems([doneButton], animated: true)
+        toolbar.setItems([clearButton, space, doneButton], animated: true)
         datePicker.inputAccessoryView = toolbar
         datePicker.inputView = picker
+    }
+    @objc private func undoClicked(){
+        datePicker.text = ""
+        self.view.endEditing(true)
     }
     
     @objc private func doneClicked(){
