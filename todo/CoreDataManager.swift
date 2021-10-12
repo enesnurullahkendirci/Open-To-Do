@@ -10,8 +10,9 @@ import UIKit
 
 protocol CoreDataManagerProtocol {
     func getAllItems() -> [ToDo]
-    func createItem(id: Int, title: String, endDate: Date?, color: UIColor)
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor)
     func updateItemComplete(todoId id: Int)
+    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor)
     
     func getItemFromId(todoId id: Int) -> ToDo
 }
@@ -19,6 +20,7 @@ protocol CoreDataManagerProtocol {
 class CoreDataManager: CoreDataManagerProtocol {
     
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var numberOfToDos = 0
     
     func getAllItems() -> [ToDo] {
         var toDos: [ToDo] = []
@@ -32,19 +34,38 @@ class CoreDataManager: CoreDataManagerProtocol {
         } catch let nserror as NSError {
             print("ERROR: Coredata error \(nserror)")
         }
+        numberOfToDos = toDos.count
         return toDos
     }
     
-    func createItem(id: Int, title: String, endDate: Date?, color: UIColor) {
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor) {
         guard let entity = NSEntityDescription.entity(forEntityName: ToDoItemEnum.entityName.rawValue, in: context)
         else { return }
         let newItem = NSManagedObject(entity: entity, insertInto: context)
-        newItem.setValue(id, forKey: ToDoItemEnum.id.rawValue)
+        newItem.setValue(numberOfToDos + 1, forKey: ToDoItemEnum.id.rawValue)
         newItem.setValue(title, forKey: ToDoItemEnum.title.rawValue)
+        newItem.setValue(detail, forKey: ToDoItemEnum.detail.rawValue)
         newItem.setValue(Date(), forKey: ToDoItemEnum.startDate.rawValue)
         newItem.setValue(endDate, forKey: ToDoItemEnum.endDate.rawValue)
         newItem.setValue(false, forKey: ToDoItemEnum.completed.rawValue)
         newItem.setValue(color, forKey: ToDoItemEnum.color.rawValue)
+        contextSave()
+    }
+    
+    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor) {
+        var toDo: ToDoItem
+        let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
+        fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
+        let results = try? context.fetch(fetchToDo)
+        if results?.count == 0 {
+            toDo = ToDoItem(context: context)
+        } else {
+            toDo = (results?.first)!
+        }
+        toDo.title = title
+        toDo.detail = detail
+        toDo.endDate = endDate
+        toDo.color = color
         contextSave()
     }
     

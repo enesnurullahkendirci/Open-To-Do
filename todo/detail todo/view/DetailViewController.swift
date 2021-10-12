@@ -43,6 +43,17 @@ class DetailViewController: UIViewController {
         sender.setImage(UIImage(systemName: DetailColorPickerImages.selected.rawValue), for: .normal)
     }
     
+    @IBAction func saveUpdateButtonClicked(_ sender: UIButton) {
+        guard let title = todoTitle.text else { return }
+        guard let detail = detailTextView.text else { return }
+        var endDate: Date?
+        if datePicker.text != "" {
+            endDate = picker.date
+        }
+        guard let color = view.backgroundColor else { return }
+        detailViewModel.saveUpdateButtonClicked(id: todoId, title: title, detail: detail, endDate: endDate, color: color)
+    }
+    
     private func configureScreen(){
         guard let todoId = todoId else {
             detailScreenTitle.text = "Add To-Do"
@@ -83,7 +94,6 @@ class DetailViewController: UIViewController {
         datePicker.text = ""
         self.view.endEditing(true)
     }
-    
     @objc private func doneClicked(){
         datePicker.text = picker.date.dateToString()
         self.view.endEditing(true)
