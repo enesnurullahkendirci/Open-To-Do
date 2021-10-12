@@ -15,8 +15,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var todoTitle: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var datePicker: UITextField!
-    
     @IBOutlet var colorButtons: [UIButton]!
+    @IBOutlet weak var saveUpdateButton: UIButton!
     
     override func viewDidLoad() {
         createDatePicker()
@@ -49,9 +49,9 @@ class DetailViewController: UIViewController {
             return
         }
         let toDo = detailViewModel.getToDo(id: todoId)
+        view.backgroundColor = toDo.color
         detailScreenTitle.text = toDo.title
         todoTitle.text = toDo.title
-        view.backgroundColor = toDo.color
         detailTextView.text = toDo.detail != nil ? toDo.detail : ""
         datePicker.text = toDo.endDate != nil ? toDo.endDate!.dateToString() : ""
         for button in colorButtons {
@@ -62,6 +62,7 @@ class DetailViewController: UIViewController {
                 button.setImage(UIImage(systemName: DetailColorPickerImages.unselected.rawValue), for: .normal)
             }
         }
+        saveUpdateButton.setTitle("Update To-Do", for: .normal)
     }
     
     private let picker = UIDatePicker()

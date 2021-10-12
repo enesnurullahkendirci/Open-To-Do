@@ -14,6 +14,7 @@
                 <outlet property="datePicker" destination="dLy-QI-WKa" id="bAg-td-tAR"/>
                 <outlet property="detailScreenTitle" destination="I41-i2-Lic" id="HBf-VU-81V"/>
                 <outlet property="detailTextView" destination="j78-Yn-VIY" id="MmX-cP-eYf"/>
+                <outlet property="saveUpdateButton" destination="Ef8-sU-ZXX" id="Vbb-Yd-8tJ"/>
                 <outlet property="todoTitle" destination="2Va-UG-6vB" id="fV7-KK-lvG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="colorButtons" destination="RIt-fO-S7W" collectionClass="NSMutableArray" id="0vC-fs-LLL"/>
