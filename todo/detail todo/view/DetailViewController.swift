@@ -20,16 +20,14 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var saveUpdateButton: UIButton!
     
     override func viewDidLoad() {
-        createDatePicker()
         configureScreen()
         super.viewDidLoad()
     }
-
+    
     init(todoId id: Int?) {
         self.todoId = id
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -60,6 +58,7 @@ class DetailViewController: UIViewController {
     }
     
     private func configureScreen(){
+        createDatePicker()
         guard let todoId = todoId else {
             detailScreenTitle.text = "Add To-Do"
             return
@@ -79,6 +78,8 @@ class DetailViewController: UIViewController {
             }
         }
         saveUpdateButton.setTitle("Update To-Do", for: .normal)
+        saveUpdateButton.isUserInteractionEnabled = true
+        saveUpdateButton.backgroundColor = .systemYellow
     }
     
     private let picker = UIDatePicker()
@@ -103,5 +104,14 @@ class DetailViewController: UIViewController {
         datePicker.text = picker.date.dateToString()
         self.view.endEditing(true)
     }
+}
 
+extension DetailViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        saveUpdateButton.isUserInteractionEnabled = !text.isEmpty
+        UIButton.animate(withDuration: 0.5) {
+            self.saveUpdateButton.backgroundColor =  text.isEmpty ? .systemGray : .systemYellow
+        }
+    }
 }
