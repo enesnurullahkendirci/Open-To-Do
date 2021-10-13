@@ -19,6 +19,8 @@ protocol CoreDataManagerProtocol {
 
 class CoreDataManager: CoreDataManagerProtocol {
     
+    static let shared = CoreDataManager()
+    private init() {}
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var numberOfToDos = 0
     
