@@ -13,6 +13,10 @@ protocol ListedViewControllerType: AnyObject {
     func onTodosFetched(toDos: [[ToDo]])
 }
 
+protocol ListedVCDelegateProtocol {
+    func didAnyUpdate(res: Bool)
+}
+
 class ListedViewController: UIViewController {
     var toDos: [[ToDo]]?
     var searchedToDos: [[ToDo]]?
@@ -128,6 +132,11 @@ extension ListedViewController: UISearchBarDelegate{
         searchBar.text = ""
         tableView.reloadData()
     }
-    
 }
 
+extension ListedViewController: ListedVCDelegateProtocol {
+    func didAnyUpdate(res: Bool) {
+        guard let presenter = presenter else { return }
+        res ? presenter.onListedPresenter(ascending: ascending) : nil
+    }
+}

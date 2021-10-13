@@ -42,6 +42,7 @@ class ListedRouter: ListedRouterType {
     func pushToDetail(on view: ListedViewControllerType,todoId id: Int?) {
         let detailViewController = DetailViewController(todoId: id)
         let viewController = view as! ListedViewController
+        detailViewController.delegate = viewController
         viewController.present(detailViewController, animated: true, completion: nil)
     }
     
