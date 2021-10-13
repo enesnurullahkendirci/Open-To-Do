@@ -10,9 +10,9 @@ import UIKit
 
 protocol CoreDataManagerProtocol {
     func getAllItems() -> [ToDo]
-    func createItem(title: String, detail: String, endDate: Date?, color: UIColor)
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
     func updateItemComplete(todoId id: Int)
-    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor)
+    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
     
     func getItemFromId(todoId id: Int) -> ToDo
 }
@@ -40,7 +40,7 @@ class CoreDataManager: CoreDataManagerProtocol {
         return toDos
     }
     
-    func createItem(title: String, detail: String, endDate: Date?, color: UIColor) {
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void) {
         guard let entity = NSEntityDescription.entity(forEntityName: ToDoItemEnum.entityName.rawValue, in: context)
         else { return }
         let newItem = NSManagedObject(entity: entity, insertInto: context)
@@ -51,10 +51,12 @@ class CoreDataManager: CoreDataManagerProtocol {
         newItem.setValue(endDate, forKey: ToDoItemEnum.endDate.rawValue)
         newItem.setValue(false, forKey: ToDoItemEnum.completed.rawValue)
         newItem.setValue(color, forKey: ToDoItemEnum.color.rawValue)
-        contextSave()
+        contextSave { res in
+            completion(res)
+        }
     }
     
-    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor) {
+    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void) {
         var toDo: ToDoItem
         let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
         fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
@@ -68,7 +70,9 @@ class CoreDataManager: CoreDataManagerProtocol {
         toDo.detail = detail
         toDo.endDate = endDate
         toDo.color = color
-        contextSave()
+        contextSave { res in
+            completion(res)
+        }
     }
     
     func updateItemComplete(todoId id: Int) {
@@ -82,7 +86,9 @@ class CoreDataManager: CoreDataManagerProtocol {
             toDo = (results?.first)!
         }
         toDo.completed.toggle()
-        contextSave()
+        contextSave { res in
+            print(res)
+        }
     }
     
     func getItemFromId(todoId id: Int) -> ToDo {
@@ -111,10 +117,12 @@ class CoreDataManager: CoreDataManagerProtocol {
         return toDo
     }
     
-    private func contextSave(){
+    private func contextSave(completion: @escaping(_ res: Bool) -> Void){
         do {
             try context.save()
+            completion(true)
         } catch let nserror as NSError {
+            completion(false)
             print("ERROR: Coredata error \(nserror)")
         }
     }

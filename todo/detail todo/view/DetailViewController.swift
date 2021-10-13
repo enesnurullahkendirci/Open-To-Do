@@ -8,6 +8,7 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    var delegate: ListedVCDelegateProtocol? = nil
     private var detailViewModel: DetailViewModelType = DetailViewModel()
     private var todoId: Int?
     
@@ -51,7 +52,11 @@ class DetailViewController: UIViewController {
             endDate = picker.date
         }
         guard let color = view.backgroundColor else { return }
-        detailViewModel.saveUpdateButtonClicked(id: todoId, title: title, detail: detail, endDate: endDate, color: color)
+        detailViewModel.saveUpdateButtonClicked(id: todoId, title: title, detail: detail, endDate: endDate, color: color) { res in
+            guard let delegate = self.delegate else { return }
+            delegate.didAnyUpdate(res: res)
+            res ? self.dismiss(animated: true, completion: nil) : print(res)
+        }
     }
     
     private func configureScreen(){
