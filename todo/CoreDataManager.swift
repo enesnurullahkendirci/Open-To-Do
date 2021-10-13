@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-protocol CoreDataManagerProtocol {
+protocol DataManagerProtocol {
     func getAllItems() -> [ToDo]
     func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
     func updateItemComplete(todoId id: Int)
@@ -17,7 +17,7 @@ protocol CoreDataManagerProtocol {
     func getItemFromId(todoId id: Int) -> ToDo
 }
 
-class CoreDataManager: CoreDataManagerProtocol {
+class CoreDataManager: DataManagerProtocol {
     
     static let shared = CoreDataManager()
     private init() {}

@@ -13,7 +13,7 @@ protocol DetailViewModelType {
 }
 
 class DetailViewModel: DetailViewModelType {
-    private var coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
+    private var coreDataManager: DataManagerProtocol = CoreDataManager.shared
     
     func getToDo(id: Int) -> ToDo {
         let toDo = coreDataManager.getItemFromId(todoId: id)
