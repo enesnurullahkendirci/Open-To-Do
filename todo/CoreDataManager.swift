@@ -102,11 +102,12 @@ class CoreDataManager: CoreDataManagerProtocol {
     private func createToDoFromNSManagedObject(managedObject item: NSManagedObject) -> ToDo{
         let id = item.value(forKey: ToDoItemEnum.id.rawValue) as! Int
         let title = item.value(forKey: ToDoItemEnum.title.rawValue) as! String
+        let detail = item.value(forKey: ToDoItemEnum.detail.rawValue) as? String
         let startDate = item.value(forKey: ToDoItemEnum.startDate.rawValue) as! Date
         let endDate = item.value(forKey: ToDoItemEnum.endDate.rawValue) as? Date
         let completed = item.value(forKey: ToDoItemEnum.completed.rawValue) as! Bool
         let color = item.value(forKey: ToDoItemEnum.color.rawValue) as! UIColor
-        let toDo = ToDo(id: id, title: title, startDate: startDate, endDate: endDate, completed: completed, color: color)
+        let toDo = ToDo(id: id, title: title, detail: detail, startDate: startDate, endDate: endDate, completed: completed, color: color)
         return toDo
     }
     
