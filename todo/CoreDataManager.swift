@@ -10,7 +10,7 @@ import UIKit
 
 protocol DataManagerProtocol {
     func getAllItems() -> [ToDo]
-    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool, _ id: Int) -> Void)
     func updateItemComplete(todoId id: Int)
     func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
     
@@ -40,11 +40,12 @@ class CoreDataManager: DataManagerProtocol {
         return toDos
     }
     
-    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void) {
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool, _ id: Int) -> Void) {
         guard let entity = NSEntityDescription.entity(forEntityName: ToDoItemEnum.entityName.rawValue, in: context)
         else { return }
         let newItem = NSManagedObject(entity: entity, insertInto: context)
-        newItem.setValue(numberOfToDos + 1, forKey: ToDoItemEnum.id.rawValue)
+        let id = numberOfToDos + 1
+        newItem.setValue(id, forKey: ToDoItemEnum.id.rawValue)
         newItem.setValue(title, forKey: ToDoItemEnum.title.rawValue)
         newItem.setValue(detail, forKey: ToDoItemEnum.detail.rawValue)
         newItem.setValue(Date(), forKey: ToDoItemEnum.startDate.rawValue)
@@ -52,7 +53,7 @@ class CoreDataManager: DataManagerProtocol {
         newItem.setValue(false, forKey: ToDoItemEnum.completed.rawValue)
         newItem.setValue(color, forKey: ToDoItemEnum.color.rawValue)
         contextSave { res in
-            completion(res)
+            completion(res, id)
         }
     }
     
