@@ -13,9 +13,6 @@ protocol ListedViewControllerType: AnyObject {
     func onTodosFetched(toDos: [[ToDo]])
 }
 
-protocol ListedVCDelegateProtocol {
-    func didAnyUpdate(res: Bool)
-}
 
 class ListedViewController: UIViewController {
     var toDos: [[ToDo]]?

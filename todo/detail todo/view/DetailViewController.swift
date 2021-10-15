@@ -7,8 +7,12 @@
 
 import UIKit
 
+protocol ListedVCDelegateProtocol: NSObject {
+    func didAnyUpdate(res: Bool)
+}
+
 class DetailViewController: UIViewController {
-    var delegate: ListedVCDelegateProtocol? = nil
+    weak var delegate: ListedVCDelegateProtocol? = nil
     private var detailViewModel: DetailViewModelType = DetailViewModel()
     private var todoId: Int?
     
