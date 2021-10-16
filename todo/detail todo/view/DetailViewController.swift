@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
             let color = UIColor().TagToColor(tag: sender.tag)
             self.navigationBar.barTintColor = color
             self.navigationBar.layoutIfNeeded()
-            self.saveUpdateButton.backgroundColor = color
+            self.saveUpdateButton.isUserInteractionEnabled ? self.saveUpdateButton.backgroundColor = color : nil
         }
         for colorButton in colorButtons {
             colorButton.setImage(UIImage(systemName: DetailColorPickerImages.unselected.rawValue), for: .normal)
