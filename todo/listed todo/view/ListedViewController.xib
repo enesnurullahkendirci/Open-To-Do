@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVs-Ke-5jd">
-                    <rect key="frame" x="0.0" y="44" width="414" height="39"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <items>
                         <navigationItem title="Title" id="EYQ-bw-nGt">
                             <barButtonItem key="leftBarButtonItem" title="Item" image="calendar" catalog="system" id="ltr-9y-3Kk">
@@ -41,17 +41,17 @@
                     </items>
                 </navigationBar>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="J4h-yp-27C">
-                    <rect key="frame" x="0.0" y="83" width="414" height="779"/>
+                    <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                     <subviews>
                         <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Rz-s9-Y5d">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
                                 <outlet property="delegate" destination="-1" id="eah-WQ-LLG"/>
                             </connections>
                         </searchBar>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
-                            <rect key="frame" x="0.0" y="52" width="414" height="727"/>
+                            <rect key="frame" x="0.0" y="81" width="414" height="727"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="IXt-ce-8xv"/>
@@ -69,7 +69,7 @@
                 <constraint firstItem="J4h-yp-27C" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="J9j-Jx-hJ6"/>
                 <constraint firstItem="EVs-Ke-5jd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jvs-lp-K8O"/>
                 <constraint firstItem="EVs-Ke-5jd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="N9F-oU-6bw"/>
-                <constraint firstItem="J4h-yp-27C" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="a8H-m0-HCL"/>
+                <constraint firstAttribute="bottom" secondItem="J4h-yp-27C" secondAttribute="bottom" id="eL9-oJ-aHG"/>
                 <constraint firstItem="EVs-Ke-5jd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eVa-LT-QD5"/>
                 <constraint firstItem="J4h-yp-27C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vbw-P9-5hh"/>
             </constraints>
