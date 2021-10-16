@@ -16,7 +16,7 @@ class DetailViewController: UIViewController {
     private var detailViewModel: DetailViewModelType = DetailViewModel()
     private var todoId: Int?
     
-    @IBOutlet weak var detailScreenTitle: UILabel!
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var todoTitle: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var datePicker: UITextField!
@@ -37,8 +37,11 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func colorButtonClicked(_ sender: UIButton) {
-        UIView.animate(withDuration: 1) {
-            self.view.backgroundColor = UIColor().TagToColor(tag: sender.tag)
+        UIView.animate(withDuration: 0.5) {
+            let color = UIColor().TagToColor(tag: sender.tag)
+            self.navigationBar.barTintColor = color
+            self.navigationBar.layoutIfNeeded()
+            self.saveUpdateButton.backgroundColor = color
         }
         for colorButton in colorButtons {
             colorButton.setImage(UIImage(systemName: DetailColorPickerImages.unselected.rawValue), for: .normal)
@@ -64,12 +67,12 @@ class DetailViewController: UIViewController {
     private func configureScreen(){
         createDatePicker()
         guard let todoId = todoId else {
-            detailScreenTitle.text = "Add To-Do"
+            navigationBar.topItem?.title = "Add To-Do"
             return
         }
         let toDo = detailViewModel.getToDo(id: todoId)
-        view.backgroundColor = toDo.color
-        detailScreenTitle.text = toDo.title
+        navigationBar.barTintColor = toDo.color
+        navigationBar.topItem?.title = toDo.title
         todoTitle.text = toDo.title
         detailTextView.text = toDo.detail != nil ? toDo.detail : ""
         datePicker.text = toDo.endDate != nil ? toDo.endDate!.dateToString() : ""
@@ -83,7 +86,7 @@ class DetailViewController: UIViewController {
         }
         saveUpdateButton.setTitle("Update To-Do", for: .normal)
         saveUpdateButton.isUserInteractionEnabled = true
-        saveUpdateButton.backgroundColor = .systemYellow
+        saveUpdateButton.backgroundColor = toDo.color
     }
     
     private let picker = UIDatePicker()
@@ -115,7 +118,7 @@ extension DetailViewController: UITextFieldDelegate {
         guard let text = textField.text else { return }
         saveUpdateButton.isUserInteractionEnabled = !text.isEmpty
         UIButton.animate(withDuration: 0.5) {
-            self.saveUpdateButton.backgroundColor =  text.isEmpty ? .systemGray : .systemYellow
+            self.saveUpdateButton.backgroundColor =  text.isEmpty ? .systemGray : self.navigationBar.barTintColor
         }
     }
 }
