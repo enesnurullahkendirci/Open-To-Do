@@ -56,7 +56,7 @@ class DetailViewController: UIViewController {
         if datePicker.text != "" {
             endDate = picker.date
         }
-        guard let color = view.backgroundColor else { return }
+        guard let color = navigationBar.barTintColor else { return }
         detailViewModel.saveUpdateButtonClicked(id: todoId, title: title, detail: detail, endDate: endDate, color: color) { res in
             guard let delegate = self.delegate else { return }
             delegate.didAnyUpdate(res: res)
