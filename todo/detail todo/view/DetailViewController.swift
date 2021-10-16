@@ -24,6 +24,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var saveUpdateButton: UIButton!
     
     override func viewDidLoad() {
+        hideKeyboardWhenTappedAround()
         configureScreen()
         super.viewDidLoad()
     }

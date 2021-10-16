@@ -27,6 +27,7 @@ class ListedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         tableView.register(UINib(nibName: TodoCell.name.rawValue, bundle: nil), forCellReuseIdentifier: TodoCell.identifier.rawValue)
         guard let presenter = presenter else { return }
         presenter.onListedPresenter(ascending: ascending)

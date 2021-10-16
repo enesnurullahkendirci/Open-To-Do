@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		695BAA7F270C6B47002BF9D1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695BAA7E270C6B47002BF9D1 /* CoreDataManager.swift */; };
 		6980A644271A106B0082D032 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6980A643271A106B0082D032 /* LocalNotificationManager.swift */; };
+		6980A646271B28030082D032 /* UIViewController+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6980A645271B28030082D032 /* UIViewController+ext.swift */; };
 		69A09CFB2705BBDD0018B4C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09CFA2705BBDD0018B4C3 /* AppDelegate.swift */; };
 		69A09CFD2705BBDD0018B4C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A09CFC2705BBDD0018B4C3 /* SceneDelegate.swift */; };
 		69A09D052705BBDD0018B4C3 /* todo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 69A09D032705BBDD0018B4C3 /* todo.xcdatamodeld */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		695BAA7E270C6B47002BF9D1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6980A643271A106B0082D032 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		6980A645271B28030082D032 /* UIViewController+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ext.swift"; sourceTree = "<group>"; };
 		69A09CF72705BBDD0018B4C3 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A09CFA2705BBDD0018B4C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		69A09CFC2705BBDD0018B4C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				69E8A3D5270AE76800294F92 /* Date+ext.swift */,
 				69E8A3D7270AFB3500294F92 /* Enum.swift */,
 				69DDA1F42713236300BD1DFB /* UIColor+ext.swift */,
+				6980A645271B28030082D032 /* UIViewController+ext.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				69A09D192705C39F0018B4C3 /* ListedPresenter.swift in Sources */,
 				69A09D3727070C2F0018B4C3 /* ToDoTableViewCell.swift in Sources */,
 				69E8A3D6270AE76800294F92 /* Date+ext.swift in Sources */,
+				6980A646271B28030082D032 /* UIViewController+ext.swift in Sources */,
 				69C8B5BB2710585400A2E69C /* DetailViewModel.swift in Sources */,
 				69A09D3B27070C480018B4C3 /* DetailViewController.swift in Sources */,
 				69A09D052705BBDD0018B4C3 /* todo.xcdatamodeld in Sources */,
