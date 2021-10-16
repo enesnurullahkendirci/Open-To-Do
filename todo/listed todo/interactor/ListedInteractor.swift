@@ -23,11 +23,7 @@ class ListedInteractor: ListedInteractorType {
         var completedToDo: [ToDo] = []
         var uncompletedToDo: [ToDo] = []
         for todo in toDos {
-            if todo.completed {
-                completedToDo.append(todo)
-            }else {
-                uncompletedToDo.append(todo)
-            }
+            todo.completed ? completedToDo.append(todo) : uncompletedToDo.append(todo)
         }
         if !ascending {
             completedToDo.reverse()

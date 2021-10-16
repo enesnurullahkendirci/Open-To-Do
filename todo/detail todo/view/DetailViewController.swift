@@ -17,20 +17,23 @@ class DetailViewController: UIViewController {
     private var todoId: Int?
     
     @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var todoTitle: UITextField!
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
-    @IBOutlet weak var datePicker: UITextField!
+    @IBOutlet weak var endDateTextField: UITextField!
     @IBOutlet var colorButtons: [UIButton]!
     @IBOutlet weak var saveUpdateButton: UIButton!
     
+    private let endDatePicker = UIDatePicker()
+    
     override func viewDidLoad() {
         hideKeyboardWhenTappedAround()
+        createDatePicker()
         configureScreen()
         super.viewDidLoad()
     }
     
     init(todoId id: Int?) {
-        self.todoId = id
+        self.todoId = id // if id not equal nil detailScreen opened from cell. If id equal to nil opened from +(add) button.
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -51,12 +54,9 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func saveUpdateButtonClicked(_ sender: UIButton) {
-        guard let title = todoTitle.text else { return }
+        guard let title = titleTextField.text else { return }
         guard let detail = detailTextView.text else { return }
-        var endDate: Date?
-        if datePicker.text != "" {
-            endDate = picker.date
-        }
+        let endDate = endDateTextField.text != "" ? endDatePicker.date : nil
         guard let color = navigationBar.barTintColor else { return }
         detailViewModel.saveUpdateButtonClicked(id: todoId, title: title, detail: detail, endDate: endDate, color: color) { res in
             guard let delegate = self.delegate else { return }
@@ -66,17 +66,13 @@ class DetailViewController: UIViewController {
     }
     
     private func configureScreen(){
-        createDatePicker()
-        guard let todoId = todoId else {
-            navigationBar.topItem?.title = "Add To-Do"
-            return
-        }
+        guard let todoId = todoId else { return }
         let toDo = detailViewModel.getToDo(id: todoId)
         navigationBar.barTintColor = toDo.color
         navigationBar.topItem?.title = toDo.title
-        todoTitle.text = toDo.title
+        titleTextField.text = toDo.title
         detailTextView.text = toDo.detail != nil ? toDo.detail : ""
-        datePicker.text = toDo.endDate != nil ? toDo.endDate!.dateToString() : ""
+        endDateTextField.text = toDo.endDate != nil ? toDo.endDate!.dateToString() : ""
         for button in colorButtons {
             if button.tag == toDo.color.ColorToTag() {
                 button.setImage(UIImage(systemName: DetailColorPickerImages.selected.rawValue), for: .normal)
@@ -90,26 +86,35 @@ class DetailViewController: UIViewController {
         saveUpdateButton.backgroundColor = toDo.color
     }
     
-    private let picker = UIDatePicker()
+    private func configureUndefined(){
+        
+    }
+    
     private func createDatePicker() {
-        picker.datePickerMode = .dateAndTime
-        picker.minimumDate = Date()
-        picker.preferredDatePickerStyle = .wheels
+        endDatePicker.datePickerMode = .dateAndTime
+        endDatePicker.minimumDate = Date()
+        endDatePicker.preferredDatePickerStyle = .wheels
+        let toolbar = createToolBar()
+        endDateTextField.inputAccessoryView = toolbar
+        endDateTextField.inputView = endDatePicker
+    }
+    
+    private func createToolBar() -> UIToolbar{
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let clearButton = UIBarButtonItem(barButtonSystemItem: .trash, target: nil, action: #selector(undoClicked))
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
         toolbar.setItems([clearButton, space, doneButton], animated: true)
-        datePicker.inputAccessoryView = toolbar
-        datePicker.inputView = picker
+        return toolbar
     }
+    
     @objc private func undoClicked(){
-        datePicker.text = ""
+        endDateTextField.text = ""
         self.view.endEditing(true)
     }
     @objc private func doneClicked(){
-        datePicker.text = picker.date.dateToString()
+        endDateTextField.text = endDatePicker.date.dateToString()
         self.view.endEditing(true)
     }
 }

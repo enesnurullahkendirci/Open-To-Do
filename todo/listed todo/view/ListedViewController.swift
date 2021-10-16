@@ -106,11 +106,7 @@ extension ListedViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     private func getArray() -> [[ToDo]]{
-        if self.searching {
-            return self.searchedToDos!
-        } else {
-            return self.toDos!
-        }
+        return searching ? searchedToDos! : toDos!
     }
 }
 
