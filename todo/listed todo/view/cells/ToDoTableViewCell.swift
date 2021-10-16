@@ -22,11 +22,6 @@ class ToDoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.cornerRadius = 10
-        
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
     
     func setImage() {
@@ -41,11 +36,7 @@ class ToDoTableViewCell: UITableViewCell {
         view.backgroundColor = toDo.color
         todoText.text = toDo.title
         startDate.text = toDo.startDate.dateToString()
-        if toDo.endDate == nil{
-            endDate.text = ""
-        } else {
-            endDate.text = toDo.endDate?.dateToString()
-        }
+        endDate.text = toDo.endDate == nil ? "" : toDo.endDate?.dateToString()
         checkButton.tag = toDo.id
         checked = toDo.completed
         setImage()

@@ -93,7 +93,7 @@ class CoreDataManager: DataManagerProtocol {
     }
     
     func getItemFromId(todoId id: Int) -> ToDo {
-        var item: NSManagedObject
+        var item: ToDoItem
         let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
         fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
         let results = try? context.fetch(fetchToDo)

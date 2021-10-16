@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="todo" customModuleProvider="target">
             <connections>
-                <outlet property="datePicker" destination="dLy-QI-WKa" id="bAg-td-tAR"/>
                 <outlet property="detailTextView" destination="j78-Yn-VIY" id="MmX-cP-eYf"/>
+                <outlet property="endDateTextField" destination="dLy-QI-WKa" id="bAg-td-tAR"/>
                 <outlet property="navigationBar" destination="1EI-m2-Me5" id="bbi-uB-AoN"/>
                 <outlet property="saveUpdateButton" destination="Ef8-sU-ZXX" id="Vbb-Yd-8tJ"/>
-                <outlet property="todoTitle" destination="2Va-UG-6vB" id="fV7-KK-lvG"/>
+                <outlet property="titleTextField" destination="2Va-UG-6vB" id="fV7-KK-lvG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="colorButtons" destination="RIt-fO-S7W" collectionClass="NSMutableArray" id="0vC-fs-LLL"/>
                 <outletCollection property="colorButtons" destination="duy-JV-LRk" collectionClass="NSMutableArray" id="VaH-PV-sGh"/>
@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                     <color key="barTintColor" systemColor="systemRedColor"/>
                     <items>
-                        <navigationItem title="Title" id="9sI-mW-OSh"/>
+                        <navigationItem title="Add To-Do" id="9sI-mW-OSh"/>
                     </items>
                 </navigationBar>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Va-UG-6vB">
@@ -140,7 +140,7 @@
                             <rect key="frame" x="326" y="0.0" width="47" height="41"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="black"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
                                 <color key="baseForegroundColor" systemColor="systemPinkColor"/>
                             </buttonConfiguration>
                             <connections>
