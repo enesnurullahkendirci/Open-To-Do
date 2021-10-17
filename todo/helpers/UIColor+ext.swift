@@ -26,6 +26,9 @@ extension UIColor{
     }
     
     func ColorToTag() -> Int {
-        return tagColorDictionary.someKey(forValue: self)!
+        guard let val = tagColorDictionary.someKey(forValue: self) else {
+            return 0
+        }
+        return val
     }
 }

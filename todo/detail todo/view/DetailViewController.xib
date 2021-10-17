@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -66,83 +67,90 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIt-fO-S7W">
                             <rect key="frame" x="0.0" y="0.0" width="47" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" imagePadding="0.0">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <state key="normal">
+                                <color key="titleColor" systemColor="systemRedColor"/>
                                 <imageReference key="image" image="smallcircle.filled.circle" catalog="system"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                <color key="baseForegroundColor" systemColor="systemRedColor"/>
-                            </buttonConfiguration>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="9Qw-jN-dk4"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="duy-JV-LRk">
                             <rect key="frame" x="47" y="0.0" width="46.5" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <color key="baseForegroundColor" systemColor="systemOrangeColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemOrangeColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="circle.fill" catalog="system">
+                                <color key="titleColor" systemColor="systemOrangeColor"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="yh3-pP-i0U"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9g-xS-OMv">
                             <rect key="frame" x="93.5" y="0.0" width="46.5" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <color key="baseForegroundColor" systemColor="systemGreenColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemGreenColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="circle.fill" catalog="system">
+                                <color key="titleColor" systemColor="systemGreenColor"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="dRw-IO-PvO"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToP-S1-Efv">
                             <rect key="frame" x="140" y="0.0" width="46.5" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <color key="baseForegroundColor" systemColor="systemTealColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemTealColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="circle.fill" catalog="system">
+                                <color key="titleColor" systemColor="systemTealColor"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="Pe7-FW-OY5"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0H-NZ-B9J">
                             <rect key="frame" x="186.5" y="0.0" width="46.5" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <color key="baseForegroundColor" systemColor="systemBlueColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemBlueColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="circle.fill" catalog="system">
+                                <color key="titleColor" systemColor="systemBlueColor"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="8Sf-c1-BlA"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7j-CI-xxF">
                             <rect key="frame" x="233" y="0.0" width="46.5" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <color key="baseForegroundColor" systemColor="systemIndigoColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemIndigoColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="circle.fill" catalog="system">
+                                <color key="titleColor" systemColor="systemIndigoColor"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="LEK-gc-FBT"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A4Q-xL-fqM">
                             <rect key="frame" x="279.5" y="0.0" width="46.5" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <color key="baseForegroundColor" systemColor="systemPurpleColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemPurpleColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="circle.fill" catalog="system">
+                                <color key="titleColor" systemColor="systemPurpleColor"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="ekl-Xq-Wvm"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcO-Zz-gNo">
                             <rect key="frame" x="326" y="0.0" width="47" height="41"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system">
-                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
-                                <color key="baseForegroundColor" systemColor="systemPinkColor"/>
-                            </buttonConfiguration>
+                            <color key="tintColor" systemColor="systemPinkColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="circle.fill" catalog="system">
+                                <color key="titleColor" systemColor="systemPinkColor"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                            </state>
                             <connections>
                                 <action selector="colorButtonClicked:" destination="-1" eventType="touchUpInside" id="fMO-eb-qHH"/>
                             </connections>

@@ -38,6 +38,7 @@ class ToDoTableViewCell: UITableViewCell {
         startDate.text = toDo.startDate.dateToString()
         endDate.text = toDo.endDate == nil ? "" : toDo.endDate?.dateToString()
         checkButton.tag = toDo.id
+        checkButton.setTitle("", for: .normal)
         checked = toDo.completed
         setImage()
     }

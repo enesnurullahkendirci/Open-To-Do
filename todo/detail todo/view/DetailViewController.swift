@@ -74,6 +74,7 @@ class DetailViewController: UIViewController {
         detailTextView.text = toDo.detail != nil ? toDo.detail : ""
         endDateTextField.text = toDo.endDate != nil ? toDo.endDate!.dateToString() : ""
         for button in colorButtons {
+            button.setTitle("", for: .normal)
             if button.tag == toDo.color.ColorToTag() {
                 button.setImage(UIImage(systemName: DetailColorPickerImages.selected.rawValue), for: .normal)
             }
@@ -84,10 +85,6 @@ class DetailViewController: UIViewController {
         saveUpdateButton.setTitle("Update To-Do", for: .normal)
         saveUpdateButton.isUserInteractionEnabled = true
         saveUpdateButton.backgroundColor = toDo.color
-    }
-    
-    private func configureUndefined(){
-        
     }
     
     private func createDatePicker() {
