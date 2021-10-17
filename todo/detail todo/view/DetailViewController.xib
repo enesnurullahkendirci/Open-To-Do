@@ -40,7 +40,7 @@
                         <navigationItem title="Add To-Do" id="9sI-mW-OSh"/>
                     </items>
                 </navigationBar>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="*Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Va-UG-6vB">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Va-UG-6vB">
                     <rect key="frame" x="20.5" y="112" width="373" height="41"/>
                     <color key="backgroundColor" systemColor="placeholderTextColor"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -56,7 +56,7 @@
                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dLy-QI-WKa">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dLy-QI-WKa">
                     <rect key="frame" x="20.5" y="430.5" width="373" height="40.5"/>
                     <color key="backgroundColor" systemColor="placeholderTextColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
