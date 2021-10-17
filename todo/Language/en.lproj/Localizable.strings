@@ -1,0 +1,12 @@
+//List Screen
+"Add some To-Do" = "Add some To-Do";
+"Good Luck with To-Do." = "Good Luck with To-Do.";
+"To-Do" = "To-Do";
+"Completed" = "Completed";
+
+//Detail Screen
+"Add To-Do" = "Add To-Do";
+"*Title" = "*Title";
+"End Date" = "End Date";
+"Save To-Do" = "Save To-Do";
+"Update To-Do" = "Update To-Do";

@@ -64,10 +64,10 @@ extension ListedViewController: UITableViewDataSource, UITableViewDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let toDos = toDos else { return 0 }
         if toDos[0].count == 0 {
-            navigationBar.topItem?.title = "Add some To-Do"
+            navigationBar.topItem?.title = ListScreenLanguageEnum.titleEmpty.rawValue.localized()
             return (toDos[1].count > 0 ? 2 : 0)
         }
-        navigationBar.topItem?.title = "Good Luck with To-Do."
+        navigationBar.topItem?.title = ListScreenLanguageEnum.titleNotEmpty.rawValue.localized()
         return toDos.count
     }
     
@@ -101,7 +101,7 @@ extension ListedViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let headerTitles = ["To-Do", "Completed"]
+        let headerTitles = ["To-Do", "Completed".localized()]
         return headerTitles[section]
     }
     

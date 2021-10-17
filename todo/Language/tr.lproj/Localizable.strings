@@ -1,0 +1,12 @@
+//List Screen
+"Add some To-Do" = "Bir Kaç Görev Edin";
+"Good Luck with To-Do" = "Yapılacaklar Var Kolay gelsin :)";
+"To-Do" = "Yapılacaklar";
+"Completed" = "Yapılmışlar";
+
+//Detail Screen
+"Add To-Do" = "Ekle";
+"*Title" = "*Başlık";
+"End Date" = "Bitiş Tarihi";
+"Save To-Do" = "Kaydet";
+"Update To-Do" = "Güncelle";
