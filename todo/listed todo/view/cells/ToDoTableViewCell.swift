@@ -7,8 +7,12 @@
 
 import UIKit
 
+protocol CellDelegateProtocol: NSObject {
+    func checkButtonClicked(id: UUID)
+}
+
 class ToDoTableViewCell: UITableViewCell {
-    
+    weak var delegate: CellDelegateProtocol? = nil
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var todoText: UILabel!
     @IBOutlet weak var startDate: UILabel!
@@ -24,6 +28,12 @@ class ToDoTableViewCell: UITableViewCell {
         self.contentView.layer.cornerRadius = 10
     }
     
+    @IBAction func checkButtonClicked(_ sender: UIButton) {
+        guard let id = toDo?.id else { return }
+        guard let delegate = delegate else { return }
+        delegate.checkButtonClicked(id: id)
+    }
+    
     func setImage() {
         guard let checkedImage = UIImage(systemName: ListedCheckImages.checked.rawValue) else { return }
         guard let uncheckedImage = UIImage(systemName: ListedCheckImages.unchecked.rawValue) else { return }
@@ -37,7 +47,6 @@ class ToDoTableViewCell: UITableViewCell {
         todoText.text = toDo.title
         startDate.text = toDo.startDate.dateToString()
         endDate.text = toDo.endDate == nil ? "" : toDo.endDate?.dateToString()
-        checkButton.tag = toDo.id
         checkButton.setTitle("", for: .normal)
         checked = toDo.completed
         setImage()

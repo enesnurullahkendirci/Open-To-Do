@@ -8,7 +8,7 @@
 import UIKit
 
 struct ToDo {
-    var id: Int
+    var id: UUID
     var title: String
     var detail: String?
     var startDate: Date

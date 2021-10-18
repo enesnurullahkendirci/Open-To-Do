@@ -10,11 +10,11 @@ import UIKit
 
 protocol DataManagerProtocol {
     func getAllItems() -> [ToDo]
-    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool, _ id: Int) -> Void)
-    func updateItemComplete(todoId id: Int)
-    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool, _ id: UUID) -> Void)
+    func updateItemComplete(todoId id: UUID)
+    func updateItem(todoId id: UUID, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
     
-    func getItemFromId(todoId id: Int) -> ToDo
+    func getItemFromId(todoId id: UUID) -> ToDo
 }
 
 class CoreDataManager: DataManagerProtocol {
@@ -22,7 +22,6 @@ class CoreDataManager: DataManagerProtocol {
     static let shared = CoreDataManager()
     private init() {}
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var numberOfToDos = 0
     
     func getAllItems() -> [ToDo] {
         var toDos: [ToDo] = []
@@ -36,15 +35,14 @@ class CoreDataManager: DataManagerProtocol {
         } catch let nserror as NSError {
             print("ERROR: Coredata error \(nserror)")
         }
-        numberOfToDos = toDos.count
         return toDos
     }
     
-    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool, _ id: Int) -> Void) {
+    func createItem(title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool, _ id: UUID) -> Void) {
         guard let entity = NSEntityDescription.entity(forEntityName: ToDoItemEnum.entityName.rawValue, in: context)
         else { return }
         let newItem = NSManagedObject(entity: entity, insertInto: context)
-        let id = numberOfToDos + 1
+        let id = UUID()
         newItem.setValue(id, forKey: ToDoItemEnum.id.rawValue)
         newItem.setValue(title, forKey: ToDoItemEnum.title.rawValue)
         newItem.setValue(detail, forKey: ToDoItemEnum.detail.rawValue)
@@ -57,10 +55,10 @@ class CoreDataManager: DataManagerProtocol {
         }
     }
     
-    func updateItem(todoId id: Int, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void) {
+    func updateItem(todoId id: UUID, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void) {
         var toDo: ToDoItem
         let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
-        fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
+        fetchToDo.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         let results = try? context.fetch(fetchToDo)
         if results?.count == 0 {
             toDo = ToDoItem(context: context)
@@ -76,10 +74,10 @@ class CoreDataManager: DataManagerProtocol {
         }
     }
     
-    func updateItemComplete(todoId id: Int) {
+    func updateItemComplete(todoId id: UUID) {
         var toDo: ToDoItem
         let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
-        fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
+        fetchToDo.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         let results = try? context.fetch(fetchToDo)
         if results?.count == 0 {
             toDo = ToDoItem(context: context)
@@ -90,10 +88,10 @@ class CoreDataManager: DataManagerProtocol {
         contextSave { _ in }
     }
     
-    func getItemFromId(todoId id: Int) -> ToDo {
+    func getItemFromId(todoId id: UUID) -> ToDo {
         var item: ToDoItem
         let fetchToDo: NSFetchRequest<ToDoItem> = ToDoItem.fetchRequest()
-        fetchToDo.predicate = NSPredicate(format: "\(ToDoItemEnum.id.rawValue) == %d", id as Int)
+        fetchToDo.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         let results = try? context.fetch(fetchToDo)
         if results?.count == 0 {
             item = ToDoItem(context: context)
@@ -105,7 +103,7 @@ class CoreDataManager: DataManagerProtocol {
     }
     
     private func createToDoFromNSManagedObject(managedObject item: NSManagedObject) -> ToDo{
-        let id = item.value(forKey: ToDoItemEnum.id.rawValue) as! Int
+        let id = item.value(forKey: ToDoItemEnum.id.rawValue) as! UUID
         let title = item.value(forKey: ToDoItemEnum.title.rawValue) as! String
         let detail = item.value(forKey: ToDoItemEnum.detail.rawValue) as? String
         let startDate = item.value(forKey: ToDoItemEnum.startDate.rawValue) as! Date

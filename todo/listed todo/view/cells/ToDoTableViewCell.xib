@@ -31,6 +31,9 @@
                                         <state key="normal" image="checkmark.seal" catalog="system">
                                             <color key="titleColor" systemColor="tertiaryLabelColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="checkButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="01Y-Nw-Bmh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>

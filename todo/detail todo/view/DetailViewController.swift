@@ -14,7 +14,7 @@ protocol ListedVCDelegateProtocol: NSObject {
 class DetailViewController: UIViewController {
     weak var delegate: ListedVCDelegateProtocol? = nil
     private var detailViewModel: DetailViewModelType = DetailViewModel()
-    private var todoId: Int?
+    private var todoId: UUID?
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var titleTextField: UITextField!
@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    init(todoId id: Int?) {
+    init(todoId id: UUID?) {
         self.todoId = id // if id not equal nil detailScreen opened from cell. If id equal to nil opened from +(add) button.
         super.init(nibName: nil, bundle: nil)
     }
@@ -80,7 +80,7 @@ class DetailViewController: UIViewController {
         saveUpdateButton.setTitle(DetailScreenLanguageEnum.saveButtonText.rawValue.localized(), for: .normal)
     }
     
-    private func configureForUpdate(_ todoId: Int){
+    private func configureForUpdate(_ todoId: UUID){
         let toDo = detailViewModel.getToDo(id: todoId)
         navigationBar.barTintColor = toDo.color
         navigationBar.topItem?.title = toDo.title

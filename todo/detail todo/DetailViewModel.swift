@@ -8,8 +8,8 @@
 import UIKit
 
 protocol DetailViewModelType {
-    func getToDo(id: Int) -> ToDo
-    func saveUpdateButtonClicked(id: Int?, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
+    func getToDo(id: UUID) -> ToDo
+    func saveUpdateButtonClicked(id: UUID?, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
     func dismiss(_ view: UIViewController)
 }
 
@@ -17,12 +17,12 @@ class DetailViewModel: DetailViewModelType {
     private let coreDataManager: DataManagerProtocol = CoreDataManager.shared
     private let localNotificationManager: NotificationManager = LocalNotificationManager.shared
     
-    func getToDo(id: Int) -> ToDo {
+    func getToDo(id: UUID) -> ToDo {
         let toDo = coreDataManager.getItemFromId(todoId: id)
         return toDo
     }
     
-    func saveUpdateButtonClicked(id: Int?, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void) {
+    func saveUpdateButtonClicked(id: UUID?, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void) {
         guard let id = id else {
             coreDataManager.createItem(title: title, detail: detail, endDate: endDate, color: color) { res, id in
                 completion(res)
@@ -42,7 +42,7 @@ class DetailViewModel: DetailViewModelType {
         view.dismiss(animated: true, completion: nil)
     }
     
-    private func createNotification(id: Int, title: String, endDate: Date){
+    private func createNotification(id: UUID, title: String, endDate: Date){
         localNotificationManager.createNotification(id: id, title: title, endDate: endDate)
     }
 }

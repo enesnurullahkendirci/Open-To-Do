@@ -11,7 +11,7 @@ protocol ListedInteractorType {
     var presenter: ListedPresenterType? {get set}
     
     func fetchTodos(ascending: Bool)
-    func updateCompleted(itemId id: Int, ascending: Bool)
+    func updateCompleted(itemId id: UUID, ascending: Bool)
 }
 
 class ListedInteractor: ListedInteractorType {
@@ -33,7 +33,7 @@ class ListedInteractor: ListedInteractorType {
         presenter.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
     }
     
-    func updateCompleted(itemId id: Int, ascending: Bool) {
+    func updateCompleted(itemId id: UUID, ascending: Bool) {
         coreDataManager.updateItemComplete(todoId: id)
         fetchTodos(ascending: ascending)
     }
