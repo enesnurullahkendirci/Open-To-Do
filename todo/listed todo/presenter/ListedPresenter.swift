@@ -14,8 +14,8 @@ protocol ListedPresenterType {
     var router: ListedRouterType? {get set}
     
     func onListedPresenter(ascending: Bool)
-    func updateCompleted(tag id: Int, ascending: Bool)
-    func didSelect(on view: ListedViewControllerType, todoId id: Int?)
+    func updateCompleted(id: UUID, ascending: Bool)
+    func didSelect(on view: ListedViewControllerType, todoId id: UUID?)
     func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]]
     
     func onTodosFetched(toDos: [[ToDo]])
@@ -35,7 +35,7 @@ extension ListedPresenter {
         interactor.fetchTodos(ascending: ascending)
     }
     
-    func didSelect(on view: ListedViewControllerType, todoId id: Int?) {
+    func didSelect(on view: ListedViewControllerType, todoId id: UUID?) {
         guard let router = router else { return }
         guard let id = id else {
             router.pushToDetail(on: view, todoId: nil)
@@ -43,7 +43,7 @@ extension ListedPresenter {
         router.pushToDetail(on: view, todoId: id)
     }
     
-    func updateCompleted(tag id: Int, ascending: Bool) {
+    func updateCompleted(id: UUID, ascending: Bool) {
         guard let interactor = interactor else { return }
         interactor.updateCompleted(itemId: id, ascending: ascending)
     }

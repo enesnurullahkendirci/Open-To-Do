@@ -78,8 +78,8 @@ extension ListedViewController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: TodoCell.identifier.rawValue) as! ToDoTableViewCell
         let toDo = toDos[indexPath.section][indexPath.row]
         cell.toDo = toDo
+        cell.delegate = self
         cell.configureCell()
-        cell.checkButton.addTarget(self, action: #selector(cellCheckButtonClicked), for: .touchUpInside)
         return cell
     }
     
@@ -90,11 +90,6 @@ extension ListedViewController: UITableViewDataSource, UITableViewDelegate{
             guard let presenter = presenter else { return }
             presenter.didSelect(on: self, todoId: id)
         }
-    }
-    
-    @objc func cellCheckButtonClicked(sender: UIButton!) {
-        guard let presenter = self.presenter else { return }
-        presenter.updateCompleted(tag: sender.tag, ascending: ascending)
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -129,5 +124,12 @@ extension ListedViewController: ListedVCDelegateProtocol {
     func didAnyUpdate(res: Bool) {
         guard let presenter = presenter else { return }
         res ? presenter.onListedPresenter(ascending: ascending) : nil
+    }
+}
+
+extension ListedViewController: CellDelegateProtocol {
+    func checkButtonClicked(id: UUID) {
+        guard let presenter = self.presenter else { return }
+        presenter.updateCompleted(id: id, ascending: ascending)
     }
 }

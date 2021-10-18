@@ -13,7 +13,7 @@ protocol ListedRouterType {
     var entry: EntryPoint? { get }
     
     static func start() -> ListedRouterType
-    func pushToDetail(on view: ListedViewControllerType, todoId id: Int?)
+    func pushToDetail(on view: ListedViewControllerType, todoId id: UUID?)
 }
 
 class ListedRouter: ListedRouterType {
@@ -39,7 +39,7 @@ class ListedRouter: ListedRouterType {
         return router
     }
     
-    func pushToDetail(on view: ListedViewControllerType,todoId id: Int?) {
+    func pushToDetail(on view: ListedViewControllerType,todoId id: UUID?) {
         let detailViewController = DetailViewController(todoId: id)
         let viewController = view as! ListedViewController
         detailViewController.delegate = viewController

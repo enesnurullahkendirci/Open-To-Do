@@ -10,7 +10,7 @@ import UserNotifications
 
 
 protocol NotificationManager {
-    func createNotification(id: Int, title: String, endDate: Date)
+    func createNotification(id: UUID, title: String, endDate: Date)
 }
 
 class LocalNotificationManager: NotificationManager {
@@ -18,11 +18,11 @@ class LocalNotificationManager: NotificationManager {
     private init() {}
     let notificationContent = UNMutableNotificationContent()
     
-    func createNotification(id: Int, title: String, endDate: Date) {
+    func createNotification(id: UUID, title: String, endDate: Date) {
         setContent(title)
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: endDate)
         let dateTrigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-        let identifer = String(id)
+        let identifer = id.uuidString
         let request = UNNotificationRequest(identifier: identifer, content: notificationContent, trigger: dateTrigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
