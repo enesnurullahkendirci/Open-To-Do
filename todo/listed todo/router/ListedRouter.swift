@@ -45,6 +45,4 @@ class ListedRouter: ListedRouterType {
         detailViewController.delegate = viewController
         viewController.present(detailViewController, animated: true, completion: nil)
     }
-    
-    
 }

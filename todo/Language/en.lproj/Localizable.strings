@@ -10,3 +10,6 @@
 "End Date" = "End Date";
 "Save To-Do" = "Save To-Do";
 "Update To-Do" = "Update To-Do";
+
+//Notification
+"To-Do time has expired." = "To-Do time has expired.";

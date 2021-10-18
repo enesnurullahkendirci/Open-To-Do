@@ -13,7 +13,6 @@ protocol ListedViewControllerType: AnyObject {
     func onTodosFetched(toDos: [[ToDo]])
 }
 
-
 class ListedViewController: UIViewController {
     var toDos: [[ToDo]]?
     var searchedToDos: [[ToDo]]?
@@ -32,7 +31,6 @@ class ListedViewController: UIViewController {
         guard let presenter = presenter else { return }
         presenter.onListedPresenter(ascending: ascending)
         searchBar.searchTextField.clearButtonMode = .never
-
     }
     
     @IBAction func addClicked(_ sender: UIBarButtonItem) {
@@ -44,7 +42,6 @@ class ListedViewController: UIViewController {
         guard let presenter = presenter else { return }
         ascending.toggle()
         presenter.onListedPresenter(ascending: ascending)
-
     }
 }
 
@@ -101,7 +98,7 @@ extension ListedViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let headerTitles = ["To-Do", "Completed".localized()]
+        let headerTitles = [ListScreenLanguageEnum.sectionHeader1.rawValue.localized(), ListScreenLanguageEnum.sectionHeader2.rawValue.localized()]
         return headerTitles[section]
     }
     

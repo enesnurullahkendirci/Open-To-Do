@@ -26,7 +26,6 @@ class ListedPresenter: ListedPresenterType {
     var view: ListedViewControllerType?
     var interactor: ListedInteractorType?
     var router: ListedRouterType?
-    
 }
 
 //MARK: - ListedPresenterType View Methods
@@ -35,6 +34,7 @@ extension ListedPresenter {
         guard let interactor = interactor else { return }
         interactor.fetchTodos(ascending: ascending)
     }
+    
     func didSelect(on view: ListedViewControllerType, todoId id: Int?) {
         guard let router = router else { return }
         guard let id = id else {

@@ -22,7 +22,7 @@ extension UIColor{
     }
     
     func TagToColor(tag: Int) -> UIColor {
-        return tagColorDictionary[tag]!
+        return tagColorDictionary[tag] ?? .systemRed
     }
     
     func ColorToTag() -> Int {

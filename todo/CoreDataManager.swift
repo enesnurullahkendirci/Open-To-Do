@@ -87,9 +87,7 @@ class CoreDataManager: DataManagerProtocol {
             toDo = (results?.first)!
         }
         toDo.completed.toggle()
-        contextSave { res in
-            print(res)
-        }
+        contextSave { _ in }
     }
     
     func getItemFromId(todoId id: Int) -> ToDo {

@@ -29,7 +29,7 @@ class LocalNotificationManager: NotificationManager {
     
     private func setContent(_ title: String){
         notificationContent.title = title
-        notificationContent.body = "To-Do history is over."
+        notificationContent.body = NotificationLanguageEnum.body.rawValue.localized()
         notificationContent.sound = .default
     }
 }

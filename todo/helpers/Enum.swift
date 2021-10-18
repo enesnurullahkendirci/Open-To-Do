@@ -30,5 +30,5 @@ enum TodoCell: String {
 
 enum DetailColorPickerImages: String {
     case unselected = "circle.fill"
-    case selected = "smallcircle.filled.circle"
+    case selected = "circle"
 }

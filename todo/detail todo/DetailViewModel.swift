@@ -10,6 +10,7 @@ import UIKit
 protocol DetailViewModelType {
     func getToDo(id: Int) -> ToDo
     func saveUpdateButtonClicked(id: Int?, title: String, detail: String, endDate: Date?, color: UIColor, completion: @escaping(_ res: Bool) -> Void)
+    func dismiss(_ view: UIViewController)
 }
 
 class DetailViewModel: DetailViewModelType {
@@ -29,13 +30,16 @@ class DetailViewModel: DetailViewModelType {
                 res ? self.createNotification(id: id, title: title, endDate: endDate) : nil
             }
             return
-            
         }
         coreDataManager.updateItem(todoId: id, title: title, detail: detail, endDate: endDate, color: color){ res in
             completion(res)
             guard let endDate = endDate else { return }
             res ? self.createNotification(id: id, title: title, endDate: endDate) : nil
         }
+    }
+    
+    func dismiss(_ view: UIViewController) {
+        view.dismiss(animated: true, completion: nil)
     }
     
     private func createNotification(id: Int, title: String, endDate: Date){

@@ -56,20 +56,31 @@ class DetailViewController: UIViewController {
     @IBAction func saveUpdateButtonClicked(_ sender: UIButton) {
         guard let title = titleTextField.text else { return }
         guard let detail = detailTextView.text else { return }
-        let endDate = endDateTextField.text != "" ? endDatePicker.date : nil
+        let endDate = endDateTextField.text == "" ? nil : endDatePicker.date
         guard let color = navigationBar.barTintColor else { return }
         detailViewModel.saveUpdateButtonClicked(id: todoId, title: title, detail: detail, endDate: endDate, color: color) { res in
             guard let delegate = self.delegate else { return }
             delegate.didAnyUpdate(res: res)
-            res ? self.dismiss(animated: true, completion: nil) : print(res)
+            res ? self.detailViewModel.dismiss(self) : print(res)
         }
     }
     
     private func configureScreen(){
+        titleTextField.placeholder = DetailScreenLanguageEnum.titleTextFieldPlaceHolder.rawValue.localized()
+        endDateTextField.placeholder = DetailScreenLanguageEnum.endDateTextFieldPlaceHolder.rawValue.localized()
         guard let todoId = todoId else {
             configureDefault()
             return
         }
+        configureForUpdate(todoId)
+    }
+    
+    private func configureDefault() {
+        navigationBar.topItem?.title = DetailScreenLanguageEnum.navigationTitle.rawValue.localized()
+        saveUpdateButton.setTitle(DetailScreenLanguageEnum.saveButtonText.rawValue.localized(), for: .normal)
+    }
+    
+    private func configureForUpdate(_ todoId: Int){
         let toDo = detailViewModel.getToDo(id: todoId)
         navigationBar.barTintColor = toDo.color
         navigationBar.topItem?.title = toDo.title
@@ -87,13 +98,6 @@ class DetailViewController: UIViewController {
         saveUpdateButton.setTitle(DetailScreenLanguageEnum.updateButtonText.rawValue.localized(), for: .normal)
         saveUpdateButton.isUserInteractionEnabled = true
         saveUpdateButton.backgroundColor = toDo.color
-    }
-    
-    private func configureDefault() {
-        navigationBar.topItem?.title = DetailScreenLanguageEnum.navigationTitle.rawValue.localized()
-        titleTextField.placeholder = DetailScreenLanguageEnum.titleTextFieldPlaceHolder.rawValue.localized()
-        endDateTextField.placeholder = DetailScreenLanguageEnum.endDateTextFieldPlaceHolder.rawValue.localized()
-        saveUpdateButton.setTitle(DetailScreenLanguageEnum.saveButtonText.rawValue.localized(), for: .normal)
     }
     
     private func createDatePicker() {

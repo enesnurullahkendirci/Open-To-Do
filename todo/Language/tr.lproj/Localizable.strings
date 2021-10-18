@@ -10,3 +10,6 @@
 "End Date" = "Bitiş Tarihi";
 "Save To-Do" = "Kaydet";
 "Update To-Do" = "Güncelle";
+
+//Notification
+"To-Do time has expired." = "Yapılacağın süresi doldu.";
