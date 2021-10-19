@@ -8,26 +8,33 @@
 import Foundation
 
 protocol ListedInteractorType {
-    var interactorDelegate: ListedInteractorDelegate? { get set }
+    var presenter: ListedPresenterType? {get set}
     
-    func fetchTodos()
-}
-
-protocol ListedInteractorDelegate: AnyObject {
-    func onTodosFetched(toDos: [ToDo])
+    func fetchTodos(ascending: Bool)
+    func updateCompleted(itemId id: UUID, ascending: Bool)
 }
 
 class ListedInteractor: ListedInteractorType {
+    var presenter: ListedPresenterType?
+    private var coreDataManager: DataManagerProtocol = CoreDataManager.shared
     
-    weak var interactorDelegate: ListedInteractorDelegate?
-
-    func fetchTodos() {
-        var toDos: [ToDo] = []
-        for i in 0...5{
-            toDos.append(ToDo(title: "elma al", date: i, complete: false))
+    func fetchTodos(ascending: Bool) {
+        let toDos: [ToDo] = coreDataManager.getAllItems()
+        var completedToDo: [ToDo] = []
+        var uncompletedToDo: [ToDo] = []
+        for todo in toDos {
+            todo.completed ? completedToDo.append(todo) : uncompletedToDo.append(todo)
         }
-        self.interactorDelegate?.onTodosFetched(toDos: toDos)
+        if !ascending {
+            completedToDo.reverse()
+            uncompletedToDo.reverse()
+        }
+        guard let presenter = self.presenter else { return }
+        presenter.onTodosFetched(toDos: [uncompletedToDo, completedToDo])
     }
     
-    
+    func updateCompleted(itemId id: UUID, ascending: Bool) {
+        coreDataManager.updateItemComplete(todoId: id)
+        fetchTodos(ascending: ascending)
+    }
 }

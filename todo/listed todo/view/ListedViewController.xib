@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListedViewController" customModule="todo" customModuleProvider="target">
+            <connections>
+                <outlet property="navigationBar" destination="EVs-Ke-5jd" id="fdi-uM-5Te"/>
+                <outlet property="searchBar" destination="1Rz-s9-Y5d" id="MpS-ov-7Us"/>
+                <outlet property="tableView" destination="z7M-uQ-QUS" id="6l2-Rq-K9r"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVs-Ke-5jd">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <items>
+                        <navigationItem title="Title" id="EYQ-bw-nGt">
+                            <barButtonItem key="leftBarButtonItem" title="Item" image="calendar" catalog="system" id="ltr-9y-3Kk">
+                                <connections>
+                                    <action selector="sort:" destination="-1" id="2Rh-8F-Tok"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" id="j6k-gs-BAw">
+                                <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
+                                <connections>
+                                    <action selector="addClicked:" destination="-1" id="5k6-MC-OQd"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="J4h-yp-27C">
+                    <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                    <subviews>
+                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Rz-s9-Y5d">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="eah-WQ-LLG"/>
+                            </connections>
+                        </searchBar>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
+                            <rect key="frame" x="0.0" y="81" width="414" height="727"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="IXt-ce-8xv"/>
+                                <outlet property="delegate" destination="-1" id="q6H-Jo-pFp"/>
+                            </connections>
+                        </tableView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="J4h-yp-27C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="66C-wq-Lr8"/>
+                <constraint firstItem="J4h-yp-27C" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="H7b-XO-c1h"/>
+                <constraint firstItem="J4h-yp-27C" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="J9j-Jx-hJ6"/>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jvs-lp-K8O"/>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="N9F-oU-6bw"/>
+                <constraint firstAttribute="bottom" secondItem="J4h-yp-27C" secondAttribute="bottom" id="eL9-oJ-aHG"/>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eVa-LT-QD5"/>
+                <constraint firstItem="J4h-yp-27C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vbw-P9-5hh"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="84.375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -8,35 +8,57 @@
 import Foundation
 
 protocol ListedPresenterType {
-    func onListedPresenter(on listedView: ListedViewControllerType)
+    
+    var view: ListedViewControllerType? {get set}
+    var interactor: ListedInteractorType? {get set}
+    var router: ListedRouterType? {get set}
+    
+    func onListedPresenter(ascending: Bool)
+    func updateCompleted(id: UUID, ascending: Bool)
+    func didSelect(on view: ListedViewControllerType, todoId id: UUID?)
+    func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]]
+    
+    func onTodosFetched(toDos: [[ToDo]])
 }
 
-class ListedPresenter {
+class ListedPresenter: ListedPresenterType {
     
-    var interactor = ListedInteractor()
-    weak var listedView: ListedViewControllerType?
-    
-    init() {
-        interactor.interactorDelegate = self
+    var view: ListedViewControllerType?
+    var interactor: ListedInteractorType?
+    var router: ListedRouterType?
+}
+
+//MARK: - ListedPresenterType View Methods
+extension ListedPresenter {
+    func onListedPresenter(ascending: Bool) {
+        guard let interactor = interactor else { return }
+        interactor.fetchTodos(ascending: ascending)
     }
     
-}
-
-extension ListedPresenter: ListedPresenterType{
+    func didSelect(on view: ListedViewControllerType, todoId id: UUID?) {
+        guard let router = router else { return }
+        guard let id = id else {
+            router.pushToDetail(on: view, todoId: nil)
+            return }
+        router.pushToDetail(on: view, todoId: id)
+    }
     
-    func onListedPresenter(on listedView: ListedViewControllerType) {
-//        interactor.interactorDelegate = self
-        self.listedView = listedView
-        self.interactor.fetchTodos()
+    func updateCompleted(id: UUID, ascending: Bool) {
+        guard let interactor = interactor else { return }
+        interactor.updateCompleted(itemId: id, ascending: ascending)
+    }
+    
+    func toDosFilter(toDos: [[ToDo]], searchText: String) -> [[ToDo]] {
+        let searchedToDos0 = toDos[0].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        let searchedToDos1 = toDos[1].filter { $0.title.lowercased().prefix(searchText.count) == searchText.lowercased() }
+        return [searchedToDos0, searchedToDos1]
     }
 }
 
-extension ListedPresenter: ListedInteractorDelegate{
-    func onTodosFetched(toDos: [ToDo]) {
-        guard let listedView = self.listedView else {
-            print("listedpresenter -> listedview nil")
-            return
-        }
-        listedView.onTodosFetched(toDos: toDos)
+//MARK: - ListedPresenterType Interactor Methods
+extension ListedPresenter{
+    func onTodosFetched(toDos: [[ToDo]]) {
+        guard let view = self.view else { return }
+        view.onTodosFetched(toDos: toDos)
     }
 }
