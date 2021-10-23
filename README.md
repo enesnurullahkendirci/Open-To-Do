@@ -52,6 +52,6 @@ From [App Store](https://apps.apple.com/us/app/open-to-do/id1591032054)
 ## For Developers
 ```bash 
 git clone https://github.com/enesnurullahkendirci/Open-To-Do
-cd enesnk_graduation-project
+cd Open-To-Do
 open todo.xcodeproj
 ```
