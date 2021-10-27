@@ -78,6 +78,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		695F0C3C27295D9E001D133D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				695BAA7E270C6B47002BF9D1 /* CoreDataManager.swift */,
+				6980A643271A106B0082D032 /* LocalNotificationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		695F0C3D27295DB7001D133D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				69A09D1C2705D14B0018B4C3 /* ToDo.swift */,
+				69A09D032705BBDD0018B4C3 /* todo.xcdatamodeld */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		69A09CEE2705BBDD0018B4C3 = {
 			isa = PBXGroup;
 			children = (
@@ -98,9 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				69B89F05271C600E0043B6E0 /* Language */,
-				69A09D1C2705D14B0018B4C3 /* ToDo.swift */,
-				695BAA7E270C6B47002BF9D1 /* CoreDataManager.swift */,
-				6980A643271A106B0082D032 /* LocalNotificationManager.swift */,
+				695F0C3D27295DB7001D133D /* Entities */,
+				695F0C3C27295D9E001D133D /* Managers */,
 				69E8A3D4270AE74E00294F92 /* helpers */,
 				69A09D112705BBFF0018B4C3 /* listed todo */,
 				69A09D3427070C060018B4C3 /* detail todo */,
@@ -109,7 +126,6 @@
 				69A09D062705BBDE0018B4C3 /* Assets.xcassets */,
 				69A09D082705BBDE0018B4C3 /* LaunchScreen.storyboard */,
 				69A09D0B2705BBDE0018B4C3 /* Info.plist */,
-				69A09D032705BBDD0018B4C3 /* todo.xcdatamodeld */,
 			);
 			path = todo;
 			sourceTree = "<group>";
