@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListedViewController" customModule="todo" customModuleProvider="target">
             <connections>
+                <outlet property="colorButtonsStackView" destination="TrC-Br-TAh" id="S3S-yK-Aml"/>
                 <outlet property="navigationBar" destination="EVs-Ke-5jd" id="fdi-uM-5Te"/>
                 <outlet property="searchBar" destination="1Rz-s9-Y5d" id="MpS-ov-7Us"/>
                 <outlet property="tableView" destination="z7M-uQ-QUS" id="6l2-Rq-K9r"/>
@@ -32,56 +33,174 @@
                                     <action selector="sort:" destination="-1" id="2Rh-8F-Tok"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" id="j6k-gs-BAw">
-                                <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
-                                <connections>
-                                    <action selector="addClicked:" destination="-1" id="5k6-MC-OQd"/>
-                                </connections>
-                            </barButtonItem>
+                            <rightBarButtonItems>
+                                <barButtonItem id="j6k-gs-BAw">
+                                    <imageReference key="image" image="plus" catalog="system" symbolScale="default"/>
+                                    <connections>
+                                        <action selector="addClicked:" destination="-1" id="5k6-MC-OQd"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem id="GAW-cz-9TI">
+                                    <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="default"/>
+                                    <connections>
+                                        <action selector="filterButtonClicked:" destination="-1" id="ECI-ZF-wbf"/>
+                                    </connections>
+                                </barButtonItem>
+                            </rightBarButtonItems>
                         </navigationItem>
                     </items>
                 </navigationBar>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="J4h-yp-27C">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UlW-kR-DCU">
                     <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                     <subviews>
-                        <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Rz-s9-Y5d">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="eah-WQ-LLG"/>
-                            </connections>
-                        </searchBar>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
-                            <rect key="frame" x="0.0" y="81" width="414" height="727"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <connections>
-                                <outlet property="dataSource" destination="-1" id="IXt-ce-8xv"/>
-                                <outlet property="delegate" destination="-1" id="q6H-Jo-pFp"/>
-                            </connections>
-                        </tableView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uhw-Ij-eEz">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            <subviews>
+                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="TrC-Br-TAh" userLabel="colorButtonsStackView">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHV-MD-xD0">
+                                            <rect key="frame" x="0.0" y="0.0" width="52" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemRedColor"/>
+                                            <state key="normal">
+                                                <color key="titleColor" systemColor="systemRedColor"/>
+                                                <imageReference key="image" image="circle" catalog="system"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5D-W9-GAQ">
+                                            <rect key="frame" x="52" y="0.0" width="51.5" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemOrangeColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle.fill" catalog="system">
+                                                <color key="titleColor" systemColor="systemOrangeColor"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZI-8m-N3y">
+                                            <rect key="frame" x="103.5" y="0.0" width="52" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemGreenColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle.fill" catalog="system">
+                                                <color key="titleColor" systemColor="systemGreenColor"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rN-FW-OZo">
+                                            <rect key="frame" x="155.5" y="0.0" width="51.5" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemTealColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle.fill" catalog="system">
+                                                <color key="titleColor" systemColor="systemTealColor"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjd-yM-dy8">
+                                            <rect key="frame" x="207" y="0.0" width="52" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemBlueColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle.fill" catalog="system">
+                                                <color key="titleColor" systemColor="systemBlueColor"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oVW-jA-3Or">
+                                            <rect key="frame" x="259" y="0.0" width="51.5" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemIndigoColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle.fill" catalog="system">
+                                                <color key="titleColor" systemColor="systemIndigoColor"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9JH-uV-VIy">
+                                            <rect key="frame" x="310.5" y="0.0" width="52" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemPurpleColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle.fill" catalog="system">
+                                                <color key="titleColor" systemColor="systemPurpleColor"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xds-Q8-YVs">
+                                            <rect key="frame" x="362.5" y="0.0" width="51.5" height="0.0"/>
+                                            <color key="tintColor" systemColor="systemPinkColor"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle.fill" catalog="system">
+                                                <color key="titleColor" systemColor="systemPinkColor"/>
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                                <searchBar hidden="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1Rz-s9-Y5d">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="eah-WQ-LLG"/>
+                                    </connections>
+                                </searchBar>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="z7M-uQ-QUS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="IXt-ce-8xv"/>
+                                        <outlet property="delegate" destination="-1" id="q6H-Jo-pFp"/>
+                                    </connections>
+                                </tableView>
+                            </subviews>
+                        </stackView>
                     </subviews>
-                </stackView>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="TrC-Br-TAh" firstAttribute="height" secondItem="1Rz-s9-Y5d" secondAttribute="height" id="4Ey-dx-Nkw"/>
+                        <constraint firstItem="uhw-Ij-eEz" firstAttribute="top" secondItem="UlW-kR-DCU" secondAttribute="top" id="LIk-JN-Mmh"/>
+                        <constraint firstItem="uhw-Ij-eEz" firstAttribute="leading" secondItem="UlW-kR-DCU" secondAttribute="leading" id="Sol-lD-vRB"/>
+                        <constraint firstAttribute="bottom" secondItem="uhw-Ij-eEz" secondAttribute="bottom" id="n68-0v-14i"/>
+                        <constraint firstAttribute="trailing" secondItem="uhw-Ij-eEz" secondAttribute="trailing" id="z1L-hq-aiy"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="J4h-yp-27C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="66C-wq-Lr8"/>
-                <constraint firstItem="J4h-yp-27C" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="H7b-XO-c1h"/>
-                <constraint firstItem="J4h-yp-27C" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="J9j-Jx-hJ6"/>
-                <constraint firstItem="EVs-Ke-5jd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jvs-lp-K8O"/>
-                <constraint firstItem="EVs-Ke-5jd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="N9F-oU-6bw"/>
-                <constraint firstAttribute="bottom" secondItem="J4h-yp-27C" secondAttribute="bottom" id="eL9-oJ-aHG"/>
-                <constraint firstItem="EVs-Ke-5jd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eVa-LT-QD5"/>
-                <constraint firstItem="J4h-yp-27C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vbw-P9-5hh"/>
+                <constraint firstItem="UlW-kR-DCU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2wo-mJ-nwW"/>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Hvj-7J-pFo"/>
+                <constraint firstAttribute="bottom" secondItem="UlW-kR-DCU" secondAttribute="bottom" id="Mt8-g5-cMu"/>
+                <constraint firstAttribute="trailing" secondItem="EVs-Ke-5jd" secondAttribute="trailing" id="Yb9-xY-nhw"/>
+                <constraint firstItem="UlW-kR-DCU" firstAttribute="top" secondItem="EVs-Ke-5jd" secondAttribute="bottom" id="aLi-9R-VDJ"/>
+                <constraint firstAttribute="trailing" secondItem="UlW-kR-DCU" secondAttribute="trailing" id="iCu-QM-j9v"/>
+                <constraint firstItem="EVs-Ke-5jd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="z7P-v6-D4l"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="84.375"/>
         </view>
     </objects>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

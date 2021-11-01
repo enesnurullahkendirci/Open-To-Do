@@ -20,6 +20,7 @@ class ListedViewController: UIViewController {
     var searching: Bool = false
     var ascending = true
     
+    @IBOutlet weak var colorButtonsStackView: UIStackView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -42,6 +43,14 @@ class ListedViewController: UIViewController {
         guard let presenter = presenter else { return }
         ascending.toggle()
         presenter.onListedPresenter(ascending: ascending)
+    }
+    
+    @IBAction func filterButtonClicked(_ sender: UIBarButtonItem) {
+        UIView.animate(withDuration: 0.5) {
+            self.colorButtonsStackView.isHidden.toggle()
+            self.searchBar.isHidden.toggle()
+            self.searchBarCancelButtonClicked(self.searchBar)
+        }
     }
 }
 
